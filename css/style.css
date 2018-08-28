@@ -90,6 +90,7 @@ body {
     display: flex;
     justify-content: center;
     padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .sidenav {
@@ -112,3 +113,14 @@ body {
     display: flex;
     justify-content: space-around;
 } */
+
+.uf {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+button.visualizar-btn {
+    margin-right: 5px;
+    /* font-size: 20px;
+    padding: .34rem .7rem */
+}

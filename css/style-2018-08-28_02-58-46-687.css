@@ -1,0 +1,125 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 25%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #0d133e;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    /* font-size: 25px; */
+    color: #fff;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 250px;
+    /* Same as the width of the sidenav */
+    /* font-size: 28px; */
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.list-group>.list-group-item {
+    background-color: #0d133e;
+}
+
+.panel-title>a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.panel-title>a>svg {
+    font-size: 16px;
+}
+
+#accordion>.panel>.panel-heading>.panel-title>a {
+    font-size: 20px;
+}
+
+.list-group>a {
+    padding-left: 45px;
+    font-size: 18px;
+}
+
+.sidenav a:hover {
+    background-color: #818181;
+}
+
+.panel-title {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.sidenav .panel-title:hover {
+    background-color: #818181;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.sidenav {
+    padding-top: 60px;
+}
+
+.tabela-exibe {
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: fit-content;
+}
+
+.tabela-exibe th {
+    margin-top: 15px;
+    border-top-color: transparent;
+}
+
+/* .first-line {
+    display: flex;
+    justify-content: space-around;
+} */
+
+.uf {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+button.visualizar-btn {
+    margin-right: 10px;
+    background-color: red;
+}

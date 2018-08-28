@@ -43,7 +43,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a href="Orcamento.html">
+                            <a href="Cliente.html">
                                 <i class="fas fa-chevron-right"></i> &nbsp;Orçamento</a>
                         </h4>
                     </div>
@@ -85,15 +85,25 @@
         </div>
 
         <div class="main">
-            <h1 class="titulo">Consulta de Irradiação</h1>
+            <h1 class="titulo">Consulta de Índice de Irradiação</h1>
 
             <div class="row first-line">
-                <div class="col-md-3 text-right">
+                <div class="col-md-3" style="text-align: center">
                     <a href="IncluirFuncionario.html" role="button" class="btn btn-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Novo Índice de Irradiação
+                        <i class="fas fa-plus"></i>&nbsp;Nova Irradiação
                     </a>
                 </div>
-                <div class="col-md-6" style="display: flex">
+                <div class="col-md-1 uf">
+                    <div class="form-group">
+                        <select class="form-control" id="sel1">
+                            <option>UF</option>
+                            <option>DF</option>
+                            <option>MG</option>
+                            <option>SP</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5">
                     <input type="text" class="form-control" style="align-self: flex-end">
                 </div>
                 <div class="col-md-3">
@@ -120,10 +130,10 @@
                                 <i class="fas fa-check"></i>
                             </td>
                             <td>
-                                <button type="button" class="btn-group btn btn-outline-dark">
+                                <button type="button" class="btn btn-outline-dark visualizar-btn">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button type="button" class="btn-group btn btn-outline-dark">
+                                <button type="button" class="btn btn-outline-dark">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>
@@ -132,13 +142,13 @@
                             <td>DF</td>
                             <td>Brasília</td>
                             <td style="text-align: center">
-                                <i class="fas fa-times"></i>
+                                <i class="fas fa-check"></i>
                             </td>
                             <td>
-                                <button type="button" class="btn-group btn btn-outline-dark">
+                                <button type="button" class="btn btn-outline-dark visualizar-btn">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button type="button" class="btn-group btn btn-outline-dark">
+                                <button type="button" class="btn btn-outline-dark">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>
