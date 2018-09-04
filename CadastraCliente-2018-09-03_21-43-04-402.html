@@ -85,74 +85,48 @@
         </div>
 
         <div class="main">
-            <h1 class="titulo">Novo Orçamento</h1>
+            <h1 class="titulo">Cadastro de Cliente</h1>
 
-            <div class="row first-line">
-                <div class="col-md-3 text-right">
-                    <a href="IncluirFuncionario.html" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Novo Funcionário
-                    </a>
+            <div class="row">
+                <div class="form-group co-md-6">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome">
                 </div>
-                <div class="col-md-6" style="display: flex">
-                    <input type="text" class="form-control" style="align-self: flex-end">
-                </div>
-                <div class="col-md-3">
-                    <button type="button" role="button" class="btn btn-outline-secondary">
-                        <i class="fas fa-search"></i>
-                    </button>
+
+                <div class="form-group co-md-6">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-control" id="cpf">
                 </div>
             </div>
-            <div class="table tabela-exibe" align="center">
-                <table class="table-hover table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Novo Orçamento</th>
-                            <th>CPF</th>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="text-align: center">
-                                <button type="button" class="btn-outline-dark" onclick="window.location.href='NovoOrcamento.html' ">
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                            </td>
-                            <td>000.000.000-00</td>
-                            <td>John</td>
-                            <td>(99)9999-9999</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn-outline-dark">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">
-                                <button type="button" class="btn-outline-dark" onclick="window.location.href='NovoOrcamento.html' ">
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                            </td>
-                            <td>000.000.000-00</td>
-                            <td>Mary</td>
-                            <td>Contador</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
 
+            <div class="form-group">
+                <label for="email">e-mail:</label>
+                <input type="text" class="form-control" id="email">
+            </div>
+
+            <div class="form-group">
+                <label for="fone">Telefone:</label>
+                <input type="text" class="form-control" id="fone">
+            </div>
+
+            <div class="form-group">
+                <label for="uf">Estado:</label>
+                <input type="text" class="form-control" id="uf">
+            </div>
+
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" class="form-control" id="cidade">
+            </div>
+
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" class="form-control" id="endereco">
+            </div>
+
+            <div class="form-group">
+                <label for="imovel">Imóvel:</label>
+                <input type="text" class="form-control" id="imovel">
             </div>
 
         </div>
