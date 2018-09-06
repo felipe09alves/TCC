@@ -85,78 +85,68 @@
         </div>
 
         <div class="main">
-            <h1 class="titulo">Consulta de Funcionário</h1>
+            <h1 class="titulo">Cadastro de Cliente</h1>
 
-            <div class="row first-line">
-                <div class="col-md-3" style="text-align: center">
-                    <a href="IncluirFuncionario.html" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Funcionário
-                    </a>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-6">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Nome">
                 </div>
-                <div class="col-md-6" style="display: flex">
-                    <input type="text" class="form-control" style="align-self: flex-end">
-                </div>
-                <div class="col-md-3">
-                    <button type="button" role="button" class="btn btn-outline-secondary">
-                        <i class="fas fa-search"></i>
-                    </button>
+                <div class="form-group col-md-3">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00">
                 </div>
             </div>
-            <div class="table tabela-exibe" align="center">
-                <table class="table-hover table-responsive">
-                    <thead>
-                        <tr>
-                            <th>CPF</th>
-                            <th>Nome</th>
-                            <th>Cargo</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>000.000.000-00</td>
-                            <td>John</td>
-                            <td>Eletricista</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>000.000.000-00</td>
-                            <td>Mary</td>
-                            <td>Contador</td>
-                            <td>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>000.000.000-00</td>
-                            <td>July</td>
-                            <td>Funcionário Administrativo</td>
-                            <td>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
 
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-6">
+                    <label for="email">e-mail:</label>
+                    <input type="text" class="form-control" id="email" placeholder="e-mail">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="fone">Telefone:</label>
+                    <input type="text" class="form-control" id="fone" placeholder="(xx) xxxx-xxxx">
+                </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-2">
+                    <label for="uf">Estado:</label>
+                    <select type="text" class="form-control" id="uf" placeholder="UF">
+                        <option disabled selected>UF</option>
+                        <option value="">DF</option>
+                        <option value="">MG</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" class="form-control" id="cidade" placeholder="Cidade">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-9">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" class="form-control" id="endereco" placeholder="Endereço">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-9">
+                    <label for="imovel">Imóvel:</label>
+                    <select type="text" class="form-control" id="imovel">
+                        <option disabled selected>Tipo</option>
+                        <option value="">Comercial</option>
+                        <option value="">Residencial</option>
+                        <option value="">Rural</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -165,6 +155,7 @@
 
 
 </body>
+
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
