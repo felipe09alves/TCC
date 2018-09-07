@@ -90,11 +90,11 @@
                 <div class="col-md-1"></div>
                 <div class="form-group col-md-6">
                     <label for="nome">Nome:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="nome" placeholder="Nome" value="">
+                    <input type="text" class="form-control" name="nome" placeholder="Nome" value="">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="cpf">CPF:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="cpf" placeholder="000.000.000-00">
+                    <input type="text" class="form-control" name="cpf" placeholder="000.000.000-00">
                 </div>
             </div>
 
@@ -102,11 +102,11 @@
                 <div class="col-md-1"></div>
                 <div class="form-group col-md-6">
                     <label for="email">e-mail:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="email" placeholder="e-mail">
+                    <input type="text" class="form-control" name="email" placeholder="e-mail">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="fone">Telefone:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="telefone" placeholder="(xx) xxxx-xxxx">
+                    <input type="text" class="form-control" name="telefone" placeholder="(xx) xxxx-xxxx">
                 </div>
             </div>
 
@@ -114,7 +114,7 @@
                 <div class="col-md-1"></div>
                 <div class="form-group col-md-2">
                     <label for="uf">Estado:</label><span class="text-danger"></span>
-                    <select type="text" class="form-control campo" name="uf" placeholder="UF">
+                    <select type="text" class="form-control" name="uf" placeholder="UF">
                         <option disabled selected>UF</option>
                         <option value="DF">DF</option>
                         <option value="MG">MG</option>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="form-group col-md-7">
                     <label for="cidade">Cidade:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="cidade" placeholder="Cidade">
+                    <input type="text" class="form-control" name="cidade" placeholder="Cidade">
                 </div>
             </div>
 
@@ -130,7 +130,7 @@
                 <div class="col-md-1"></div>
                 <div class="form-group col-md-9">
                     <label for="endereco">Endereço:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="endereco" placeholder="Endereço">
+                    <input type="text" class="form-control" name="endereco" placeholder="Endereço">
                 </div>
             </div>
 
@@ -138,7 +138,7 @@
                 <div class="col-md-1"></div>
                 <div class="form-group col-md-9">
                     <label for="imovel">Imóvel:</label><span class="text-danger"></span>
-                    <select type="text" class="form-control campo" name="imovel">
+                    <select type="text" class="form-control" name="imovel">
                         <option disabled selected>Tipo</option>
                         <option value="comercial">Comercial</option>
                         <option value="residencial">Residencial</option>
@@ -149,7 +149,7 @@
             <div class="row">
                 <div class="col-md-7"></div>
                 <div class="col-md-3" style="text-align: right">
-                    <button id="cadastrar" href="" type="submit" role="button" class="btn btn-outline-primary">
+                    <button href="" type="submit" role="button" class="btn btn-outline-primary">
                         <i class="fas fa-plus"></i>&nbsp;Cadastrar Cliente
                     </button>
                 </div>
@@ -167,44 +167,52 @@
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
 
-<script> /* VALIDA 'ON THE FLY' */
-    $('.campo').focusout(function() {
+<script>
+    $('input').focusout(function() {
                 
-        if ( !$(this).val() ) {            
+        if ( !$(this).val() ) {
+            console.log("vazio");
             $(this).prev().text(" * Campo obrigatório").show();
         }else {
 
-            if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]') ) && 
+            // if (( $(this).is('[name="cpf"]') && !$.isNumeric($(this).val()) )|| 
+            // ( $(this).is('[name="telefone"]') && !$.isNumeric($(this).val()) ) ) {
+
+            if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]' )) && 
             !$.isNumeric($(this).val()) ) {
                 $(this).prev().text(" * Valor Inválido").show();
+            } else if ($(this).is('select')) {
+                
             } else {
                 $(this).prev().hide();
             }
 
         }
-      
-    });
-</script>
 
-<script> /* VALIDA NO SUBMIT */
-    $( "form" ).submit(function( event ) {
 
-        $(".campo").each(function() {
 
-            if ( !$(this).val() ) {
-                $(this).prev().text(" * Campo obrigatório").show();
-                event.preventDefault();
-            } else {
-                if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]') ) && 
-                !$.isNumeric($(this).val()) ) {
-                    $(this).prev().text(" * Valor Inválido").show();
-                    event.preventDefault();
-                } 
-            }        
-            
-        });
+
+        // $("form").submit(function( event ) {
+        // });
+
+
+
+        
+        
 
     });
+
+    // $( "form" ).submit(function( event ) {
+
+    //     if ( $("input:first").val() === "correct" ) {
+    //         $("span").text("Validated...").show();
+    //         return;
+    //     }
+        
+    //     $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+    //     event.preventDefault();
+
+    // });
 </script>
 
 <style>

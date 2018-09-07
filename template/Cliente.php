@@ -43,7 +43,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a href="Cliente.html">
+                            <a href="Cliente.php">
                                 <i class="fas fa-chevron-right"></i> &nbsp;Orçamento</a>
                         </h4>
                     </div>
@@ -85,12 +85,12 @@
         </div>
 
         <div class="main">
-            <h1 class="titulo">Consulta de Funcionário</h1>
+            <h1 class="titulo">Consulta de Cliente</h1>
 
             <div class="row first-line">
                 <div class="col-md-3" style="text-align: center">
-                    <a href="IncluirFuncionario.html" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Funcionário
+                    <a href="CadastraCliente.php" role="button" class="btn btn-outline-primary">
+                        <i class="fas fa-plus"></i>&nbsp;Novo Cliente
                     </a>
                 </div>
                 <div class="col-md-6" style="display: flex">
@@ -106,20 +106,26 @@
                 <table class="table-hover table-responsive">
                     <thead>
                         <tr>
+                            <th>Novo Orçamento</th>
                             <th>CPF</th>
                             <th>Nome</th>
-                            <th>Cargo</th>
+                            <th>Telefone</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>000.000.000-00</td>
+                            <td style="text-align: center">
+                                <button type="button" class="btn" onclick="window.location.href='NovoOrcamento.html' ">
+                                    <i class="fas fa-plus-circle"></i>
+                                </button>
+                            </td>
+                            <td>000.000.000-01</td>
                             <td>John</td>
-                            <td>Eletricista</td>
+                            <td>(99)9999-9999</td>
                             <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
+                                <button type="button" class="btn visualizar-btn" onclick="window.location.href='DetalhaCliente.php'">
+                                    <span class="fas fa-eye"></span>
                                 </button>
                                 <button type="button" class="btn">
                                     <i class="fas fa-trash"></i>
@@ -127,24 +133,16 @@
                             </td>
                         </tr>
                         <tr>
+                            <td style="text-align: center">
+                                <button type="button" class="btn" onclick="window.location.href='NovoOrcamento.html' ">
+                                    <i class="fas fa-plus-circle"></i>
+                                </button>
+                            </td>
                             <td>000.000.000-00</td>
                             <td>Mary</td>
-                            <td>Contador</td>
+                            <td>(99)9999-9999</td>
                             <td>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>000.000.000-00</td>
-                            <td>July</td>
-                            <td>Funcionário Administrativo</td>
-                            <td>
-                                <button type="button" class="btn">
+                                <button type="button" class="btn visualizar-btn" onclick="window.location.href='DetalhaCliente.php'">
                                     <i class="fas fa-eye"></i>
                                 </button>
                                 <button type="button" class="btn">
@@ -167,6 +165,6 @@
 </body>
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
-<script src="../fontawesome/js/all.min.js"></script>
+<script src="../static/fontawesome/js/all.min.js"></script>
 
 </html>

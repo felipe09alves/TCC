@@ -168,7 +168,7 @@
 <script src="../static/fontawesome/js/all.min.js"></script>
 
 <script> /* VALIDA 'ON THE FLY' */
-    $('.campo').focusout(function() {
+    $('input').focusout(function() {
                 
         if ( !$(this).val() ) {            
             $(this).prev().text(" * Campo obrigatório").show();
@@ -190,6 +190,8 @@
     $( "form" ).submit(function( event ) {
 
         $(".campo").each(function() {
+
+            // if ( !$(this).is("") )
 
             if ( !$(this).val() ) {
                 $(this).prev().text(" * Campo obrigatório").show();

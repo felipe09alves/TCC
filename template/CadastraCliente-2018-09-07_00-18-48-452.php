@@ -43,7 +43,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a href="Cliente.html">
+                            <a href="Cliente.php">
                                 <i class="fas fa-chevron-right"></i> &nbsp;Orçamento</a>
                         </h4>
                     </div>
@@ -84,81 +84,77 @@
             </div>
         </div>
 
-        <div class="main">
-            <h1 class="titulo">Consulta de Índice de Irradiação</h1>
+        <form method="post" action="../resources/addCliente.php" class="main">
+            <h1 class="titulo">Cadastro de Cliente</h1>            
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-6">
+                    <label for="nome">Nome:</label><span class="text-danger text-right"></span>
+                    <input type="text" class="form-control" name="nome" placeholder="Nome" value="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-control" name="cpf" placeholder="000.000.000-00">
+                </div>
+            </div>
 
-            <div class="row first-line">
-                <div class="col-md-3" style="text-align: center">
-                    <a href="IncluirFuncionario.html" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Irradiação
-                    </a>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-6">
+                    <label for="email">e-mail:</label>
+                    <input type="text" class="form-control" name="email" placeholder="e-mail">
                 </div>
-                <div class="col-md-1 col-md-2 uf">
-                    <div class="form-group">
-                        <select class="form-control" id="sel1">
-                            <option>UF</option>
-                            <option>DF</option>
-                            <option>MG</option>
-                            <option>SP</option>
-                        </select>
-                    </div>
+                <div class="form-group col-md-3">
+                    <label for="fone">Telefone:</label>
+                    <input type="text" class="form-control" name="telefone" placeholder="(xx) xxxx-xxxx">
                 </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" style="align-self: flex-end">
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-2">
+                    <label for="uf">Estado:</label>
+                    <select type="text" class="form-control" name="uf" placeholder="UF">
+                        <option disabled selected>UF</option>
+                        <option value="DF">DF</option>
+                        <option value="MG">MG</option>
+                    </select>
                 </div>
-                <div class="col-md-3">
-                    <button type="button" role="button" class="btn btn-outline-secondary">
-                        <i class="fas fa-search"></i>
+                <div class="form-group col-md-7">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-9">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" class="form-control" name="endereco" placeholder="Endereço">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-9">
+                    <label for="imovel">Imóvel:</label>
+                    <select type="text" class="form-control" name="imovel">
+                        <option disabled selected>Tipo</option>
+                        <option value="comercial">Comercial</option>
+                        <option value="residencial">Residencial</option>
+                        <option value="rural">Rural</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"></div>
+                <div class="col-md-3" style="text-align: right">
+                    <button href="" type="submit" role="button" class="btn btn-outline-primary">
+                        <i class="fas fa-plus"></i>&nbsp;Cadastrar Cliente
                     </button>
                 </div>
             </div>
-            <div class="table tabela-exibe" align="center">
-                <table class="table-hover table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Estado</th>
-                            <th>Cidade</th>
-                            <th>Irradiação</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>MG</td>
-                            <td>João Pinheiro</td>
-                            <td style="text-align: center">
-                                <i class="fas fa-check"></i>
-                            </td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>DF</td>
-                            <td>Brasília</td>
-                            <td style="text-align: center">
-                                <i class="fas fa-check"></i>
-                            </td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
+        </form>
 
     </div>
 
@@ -166,8 +162,35 @@
 
 
 </body>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../fontawesome/js/all.min.js"></script>
+
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/fontawesome/js/all.min.js"></script>
+
+<script>
+    $("form").submit(function( event ) {
+
+        if ( $.isNumeric($('[name="cpf"]').val()) ) {
+                $("span").text("Validated...").show();
+            return;
+        }
+        
+        $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+        event.preventDefault();
+
+    });
+
+    // $( "form" ).submit(function( event ) {
+
+    //     if ( $("input:first").val() === "correct" ) {
+    //         $("span").text("Validated...").show();
+    //         return;
+    //     }
+        
+    //     $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+    //     event.preventDefault();
+
+    // });
+</script>
 
 </html>
