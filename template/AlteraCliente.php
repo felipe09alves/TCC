@@ -84,7 +84,13 @@
             </div>
         </div>
 
-        <form method="post" action="../resources/addCliente.php" class="main">
+         
+
+        <form method="post" action="../resources/salvaCliente.php" class="main">
+            <?php require('../resources/editCliente.php'); 
+            exibe();?>
+        </form>
+        <!-- <form method="post" action="../resources/editCliente.php" class="main">
             <h1 class="titulo">Cadastro de Cliente</h1>            
             <div class="row">
                 <div class="col-md-1"></div>
@@ -154,7 +160,7 @@
                     </button>
                 </div>
             </div>
-        </form>
+        </form> -->
 
     </div>
 

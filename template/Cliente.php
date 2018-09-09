@@ -114,42 +114,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td style="text-align: center">
-                                <button type="button" class="btn" onclick="window.location.href='NovoOrcamento.html' ">
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                            </td>
-                            <td>000.000.000-01</td>
-                            <td>John</td>
-                            <td>(99)9999-9999</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn" onclick="window.location.href='DetalhaCliente.php'">
-                                    <span class="fas fa-eye"></span>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">
-                                <button type="button" class="btn" onclick="window.location.href='NovoOrcamento.html' ">
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                            </td>
-                            <td>000.000.000-00</td>
-                            <td>Mary</td>
-                            <td>(99)9999-9999</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn" onclick="window.location.href='DetalhaCliente.php'">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php require('../resources/exibeClientes.php'); 
+                        lista();?>
                     </tbody>
                 </table>
 

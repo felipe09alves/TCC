@@ -91,17 +91,19 @@
                 <!-- <div class="col-lg-1"></div> -->
                 <div class="col-lg-6">
                     <div class="card card-body card-cliente">
-                        <div style="text-align: right">
-                            <button type="button" class="btn" onclick="window.location.href=''">
-                                <span class="fas fa-pen"></span>
-                            </button>
-                        </div>
-                        <h5>Nome: José das Couves</h5>
-                        <span>CPF: 000.000.000-00</span>
-                        <span>email: email@domain.com</span>
-                        <span>Telefone: (61) 99999-9999</span>
-                        <span>Cidade: Brasília - DF</span>
-                        <span>Endereço: SQS 205 Bl A, Apt 204</span>
+                        <?php require_once('../resources/exibeClientes.php');
+                        detalha(); ?>
+                    </div>
+                    <div style="text-align: left; padding-top: 15px">
+                        <a href="CadastraCliente.php" role="button" class="btn btn-outline-primary">
+                            <i class="fas fa-plus"></i>&nbsp;Novo Orçamento
+                        </a>
+                        <button type="button" class="btn visualizar-btn" onclick="window.location.href='AlteraCliente.php?id=<?php echo $_GET['id']; ?>'">
+                            <span class="fas fa-pen"></span>
+                        </button>                        
+                        <button type="button" class="btn" onclick="window.location.href='../resources/deletaCliente.php?id=<?php echo $_GET['id']; ?>'">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="col-lg-6">
