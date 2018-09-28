@@ -1,3 +1,4 @@
+<?php require_once('../resources/session.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,8 +117,8 @@
                     <label for="uf">Estado:</label><span class="text-danger"></span>
                     <select type="text" class="form-control campo" name="uf" placeholder="UF">
                         <option disabled selected>UF</option>
-                        <option value="DF">DF</option>
-                        <option value="MG">MG</option>
+                        <?php require('../resources/exibeRegiao.php'); 
+                        estado();?>
                     </select>
                 </div>
                 <div class="form-group col-md-7">

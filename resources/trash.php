@@ -1,15 +1,31 @@
+<meta charset="UTF-8">
 <?php
-
+header('Content-Type: text/html; charset=utf-8');
 require_once('connect.php');
 
-$sql = "SELECT * FROM cliente";
-$res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+// $sql = "SELECT cliente.*, estado.nome as estado, cidade.nome as cidade from cliente join estado on cliente.id_estado = estado.id join cidade on cliente.id_cidade = cidade.id WHERE cliente.id=1";
+// $sql = "SELECT nome FROM `cidade` WHERE lower(nome) like lower(_utf8'joao') collate utf8_general_ci;";
+// $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 
-    $sql = "SELECT ID FROM CLIENTE WHERE CPF='12345678915'";
-    $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
-    $r = mysqli_fetch_assoc($res);
-    echo $sql;
-    echo "id: ".$r['ID'];
+//     // $sql = "SELECT ID FROM CLIENTE WHERE CPF='12345678915'";
+    
+//     // $r = mysqli_fetch_assoc($res);
+//     // echo $sql;
+//     // echo "id: ".$r['ID'];
+//     $r = mysqli_fetch_assoc($res);
+// if ($r) {
+//     echo("entrou");
+//     while($r = mysqli_fetch_assoc($res)) {
+//         // echo $r['id'].(" ");
+//         // echo $r['sigla'].(" ");
+//         // echo $r['estado'].(" ");
+//         echo $r['nome'].("<br><br>");
+//     }
+// } else {
+//     echo("nop");
+// }
+
+
 
 // while($r = mysqli_fetch_assoc($res)) {
 //     echo $r['id'].("<br>");
@@ -54,3 +70,29 @@ $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 // 	$endereco =  ($_POST['endereco']);
 // 	$imovel =  ($_POST['imovel']);
 // }
+
+
+
+        
+        $cidade="taguatinga";
+        $uf=7;
+
+        $sql = "SELECT id, nome FROM cidade WHERE lower(nome) like lower(_utf8'$cidade') collate utf8_general_ci;";
+        $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+        $r = mysqli_fetch_assoc($res);
+
+        if ($r) {
+            echo $r['id'];
+            echo $r['nome'];
+        } else {
+            $sql = "INSERT INTO cidade (id_estado, nome) VALUES ('$uf', '$cidade')";
+            $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+
+            $sql = "SELECT id FROM cidade WHERE nome='".$cidade."';";
+            $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+            $novo = mysqli_fetch_assoc($res);
+            echo $novo['id'];
+            echo $novo['nome'];
+        }
+    
+    

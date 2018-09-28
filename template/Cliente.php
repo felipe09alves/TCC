@@ -1,3 +1,4 @@
+<?php require_once('../resources/session.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,5 +133,21 @@
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
+
+<script>
+
+    var msg = "<?php
+        if ( isset($_SESSION['confirma']) ) {
+             echo $_SESSION['confirma'];
+        }   
+    ?>";
+
+    if (msg) {
+        alert(msg);
+    }
+
+    <?php unset($_SESSION['confirma']); ?>
+
+</script>
 
 </html>

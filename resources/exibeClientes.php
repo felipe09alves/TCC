@@ -33,7 +33,7 @@ function detalha() {
 
     require('connect.php');
     $id = $_GET['id'];
-    $sql = "SELECT * FROM cliente WHERE ID=".$id;
+    $sql = "SELECT cliente.*, estado.nome AS estado, cidade.nome AS cidade FROM cliente JOIN estado ON cliente.id_estado = estado.id JOIN cidade ON cliente.id_cidade = cidade.id WHERE cliente.id=".$id;
     $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 
     $r = mysqli_fetch_assoc($res); ?>
@@ -42,7 +42,7 @@ function detalha() {
         <span> <?php echo $r['cpf'] ?> </span>
         <span> <?php echo $r['email'] ?> </span>
         <span> <?php echo $r['telefone'] ?> </span>
-        <span> <?php echo $r['uf'] ?> </span>
+        <span> <?php echo $r['estado'] ?> </span>
         <span> <?php echo $r['cidade'] ?> </span>
         <span> <?php echo $r['endereco'] ?> </span>
         <span> <?php echo $r['imovel'] ?> </span>

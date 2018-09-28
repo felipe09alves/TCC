@@ -9,4 +9,10 @@ if (!$select_db){
     die("Database Selection Failed" . mysqli_error($connection));
 }
 
+mysqli_query($connection ,"SET NAMES 'utf8'");
+mysqli_query($connection ,'SET character_set_connection=utf8');
+mysqli_query($connection ,'SET character_set_client=utf8');
+mysqli_query($connection ,'SET character_set_results=utf8');
+ 
+
 ?>
