@@ -59,8 +59,8 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="Abrir.html" class="list-group-item">Arbrir OS</a>
-                                <a href="Monitorar.html" class="list-group-item">Monitorar OS</a>
+                                <a href="AbrirOS.php" class="list-group-item">Arbrir OS</a>
+                                <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
                                 <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
@@ -95,30 +95,22 @@
                     </a>
                 </div>
                 <div class="col-md-6" style="display: flex">
-                    <input type="text" class="form-control" style="align-self: flex-end">
+                    <input id="campo-busca" type="text" class="form-control" style="align-self: flex-end" placeholder="Nome ou CPF">
                 </div>
                 <div class="col-md-3">
-                    <button type="button" role="button" class="btn btn-outline-secondary">
+
+                    <button id="botao-busca" type="button" role="button" class="btn btn-outline-secondary" >
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
-            <div class="table tabela-exibe" align="center">
-                <table class="table-hover table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Novo Orçamento</th>
-                            <th>CPF</th>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php require('../resources/exibeClientes.php'); 
-                        lista();?>
+            <div id="tabela" class="table tabela-exibe" align="center">
+                <!-- <table class="table-hover table-responsive">
+                    
+                    <tbody id="tabela">
+                        
                     </tbody>
-                </table>
+                </table> -->
 
             </div>
 
@@ -148,6 +140,52 @@
 
     <?php unset($_SESSION['confirma']); ?>
 
+</script>
+
+
+
+<script>
+
+    $("#botao-busca").click(function() {
+        ajax();
+    });
+    $("#campo-busca").keyup(function(e) {
+        if(e.keyCode == 13) {
+            ajax();
+        }
+    });
+
+    // $("#botao-busca").click(function() {
+    // $("#botao-busca").on('click keyup', function() { 
+        function ajax() {
+        $("#tabela").empty();
+        busca = $("#campo-busca").val();
+
+        if (busca.length==0) {
+            $("#tabela").append("<h4>Nenhum registro Encontrado</h4>");
+            return;
+        }
+
+        $("#tabela").append("<h5>Aguarde...</h5><div class='loader'></div> ");
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        } else {  // code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+            $("#tabela").empty();
+            $("#tabela").append(this.responseText);
+            }
+        }
+
+        xmlhttp.open("GET","../resources/buscaCliente.php?campo-busca="+busca,true);
+        xmlhttp.send();
+    // });
+        }
+    
 </script>
 
 </html>

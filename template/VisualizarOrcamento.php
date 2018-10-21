@@ -85,75 +85,98 @@
             </div>
         </div>
 
-        <form method="post" action="../resources/addCliente.php" class="main">
-            <h1 class="titulo">Cadastro de Cliente</h1>            
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-6">
-                    <label for="nome">Nome:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="nome" placeholder="Nome" value="">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="cpf">CPF:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="cpf" placeholder="000.000.000-00">
-                </div>
-            </div>
+        <form method="post" action="Contrato.php" class="main">
+            <h1 class="titulo">Visualizar Orçamento</h1>           
+            
+            <div id="cliente-main" class="row" style="display: flex; justify-content: center;">
+            
+                <div class="col-lg-4">
+                    <!-- <h4>&nbsp;</h4> -->
+                    <div class="card card-body card-cliente">                        
+                        <h4>nome</h4>
+                        <span>12315654987</span>
+                        <span>email@email.com</span>
+                        <span>6181818181</span>
+                        <span>Minas Gerais</span>
+                        <span>Água Doce do Norte</span>
+                        <span>qwe</span>
+                        <span>rural</span>
+                    </div>
+                    <div style="text-align: left; padding-top: 15px">
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-6">
-                    <label for="email">e-mail:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="email" placeholder="e-mail">
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="fone">Telefone:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="telefone" placeholder="(xx) xxxx-xxxx">
-                </div>
-            </div>
+                <div class="col-lg-5">
+                    <h4>Informações do Sistema</h4>
+                    <div class="card card-body card-cliente">
+                        <span>Quantidade de móduloas: 32</span>
+                        <span>Espaço necessário: 51m²</span>
+                        <span>Peso por m²: 10;5 kg/m²</span>
+                        <span>Capacidade do Sistema: 8,3 kWp</span>
+                        <span>Módulo: Canadian CS6U-315B 260 Wp &nbsp;&nbsp;&nbsp; Qtd: 12</span>
+                        <span>Inversor: Fronius 4210069 kW</span>
+                    </div>
+                    <div style="text-align: left; padding-top: 15px">
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-2">
-                    <label for="uf">Estado:</label><span class="text-danger"></span>
-                    <select type="text" class="form-control campo" name="uf" placeholder="UF">
-                        <option disabled selected>UF</option>
-                        <?php require('../resources/exibeRegiao.php'); 
-                        estado();?>
-                    </select>
+                    <h4>Economia</h4>
+                    <div class="card card-body card-cliente">
+                        <span>Produção Anual do Sistema: 14.178 kWh</span>
+                        <span>Economia Anual: R$ 11.000,00</span>
+                        <span>Fator de Independência: 80%</span>
+                        <h5>Payback: 10 anos</h5>
+                    </div>
+                    </div>
                 </div>
-                <div class="form-group col-md-7">
-                    <label for="cidade">Cidade:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="cidade" placeholder="Cidade">
-                </div>
-            </div>
+                
+                <div class="col-lg-3">
+                    <h4>&nbsp;</h4>
+                    <label for="">TOTAL:</label>
+                    <input type="text" class="form-control campo" name="" placeholder="R$ 00,00" value="">
+                    
+                    <div class="print-save">                       
+                        <button href="" type="submit" role="button" class="btn btn-outline-dark btn-sm">
+                            <i class="fas fa-print"></i>
+                        </button>
+                        <button href="" type="submit" role="button" class="btn btn-outline-dark btn-sm">
+                            <i class="fas fa-save"></i>&nbsp;Salvar
+                        </button>
+                    </div>
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-9">
-                    <label for="endereco">Endereço:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="endereco" placeholder="Endereço">
+                    <div class="gerer-contrato"> 
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input id="aprovada" type="checkbox" class="form-check-input" value="">Proposta Aprovada?
+                            </label>
+                        </div>
+                        <div>
+                            <button href="" id="gerar-contrato" type="submit" role="button" class="btn btn-outline-primary" disabled>Gerar Contrato</button>
+                        </div>                      
+                    </div>
+                        
                 </div>
-            </div>
+                
+                <div class="row controle">
+                    
+                    <div class="col-md-3">
+                        <button id="" onclick="goBack()" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-chevron-left"></i>&nbsp;Voltar
+                        </button>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <button id="" onclick="location.href='Cliente.php'" role="button" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-times"></i>&nbsp;Cancelar
+                        </button>  
+                    </div>
+                    <!-- <div class="col-md-1"></div>
+                    <div class="col-md-3" style="text-align: right">
+                        <button id="cadastrar" href="" type="submit" role="button" class="btn btn-outline-primary">
+                            <i class="fas fa-plus"></i>&nbsp;Cadastrar Cliente
+                        </button>
+                    </div> -->
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-9">
-                    <label for="imovel">Imóvel:</label><span class="text-danger"></span>
-                    <select type="text" class="form-control campo" name="imovel">
-                        <option disabled selected>Tipo</option>
-                        <option value="comercial">Comercial</option>
-                        <option value="residencial">Residencial</option>
-                        <option value="rural">Rural</option>
-                    </select>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-7"></div>
-                <div class="col-md-3" style="text-align: right">
-                    <button id="cadastrar" href="" type="submit" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Cadastrar Cliente
-                    </button>
-                </div>
+                
             </div>
         </form>
 
@@ -175,7 +198,7 @@
             $(this).prev().text(" * Campo obrigatório").show();
         }else {
 
-            if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]') ) && 
+            if (( $(this).is('[name="tarifa"]') || $(this).is('[name="consumo"]') || $(this).is('[name="frete"]') ) && 
             !$.isNumeric($(this).val()) ) {
                 $(this).prev().text(" * Valor Inválido").show();
             } else {
@@ -187,24 +210,19 @@
     });
 </script>
 
-<script> /* VALIDA NO SUBMIT */
-    $( "form" ).submit(function( event ) {
+<script>
+    function goBack() {
+        history.back();
+    }
+</script>
 
-        $(".campo").each(function() {
-            
-            if ( !$(this).val() ) {
-                $(this).prev().text(" * Campo obrigatório").show();
-                event.preventDefault();
-            } else {
-                if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]') ) && 
-                !$.isNumeric($(this).val()) ) {
-                    $(this).prev().text(" * Valor Inválido").show();
-                    event.preventDefault();
-                } 
-            }        
-            
-        });
-
+<script>
+    $("#aprovada").click(function () {
+        if ($(this).prop("checked")) {
+            $("#gerar-contrato").prop('disabled', false);
+        } else {
+            $("#gerar-contrato").prop('disabled', true);
+        }
     });
 </script>
 

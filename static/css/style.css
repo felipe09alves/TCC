@@ -178,3 +178,133 @@ button.visualizar-btn {
 .tabela-cliente table {
     width: 100%;
 }
+
+.loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    overflow: visible;
+    text-align: center;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: .5s;
+    animation-name: animatebottom;
+    animation-duration: .5s
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+.controle {
+    margin-top: 55px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.controle div {
+    display: flex;
+    align-items: center;
+}
+
+.print-save {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.print-save button {
+    margin-right: 15px;
+}
+
+.gerer-contrato {
+    margin-top: 3em;
+    text-align: center;
+}
+
+#gerar-contrato:disabled {
+    cursor: not-allowed;
+}
+
+.assinatura {
+    border-bottom: 1px solid #000;
+}
+
+#nova-atividade {
+    position: relative;
+    bottom: 0;
+    margin-top: 15px;
+    left: 0;
+    width: fit-content;
+}
+
+.btn-nova-atividade {
+    padding-left: 30px;
+}
+
+.center {
+    text-align: center;
+}
+
+.tabela-abrir-os tr td:last-child,
+.tabela-abrir-os tr th:last-child {
+    text-align: center;
+}
+
+.pr-15 tr td,
+.pr-15 tr th {
+    padding-right: 1.5rem;
+}
+
+.checkbox-finalizada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: none;
+}
+
+.width-75vw {
+    width: 75vw;
+}
+
+.justificativa {
+    margin-top: 7px;
+    margin-left: 35px;
+}

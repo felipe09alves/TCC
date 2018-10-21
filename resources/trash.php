@@ -74,25 +74,61 @@ require_once('connect.php');
 
 
         
-        $cidade="taguatinga";
-        $uf=7;
+        // $cidade="taguatinga";
+        // $uf=7;
 
-        $sql = "SELECT id, nome FROM cidade WHERE lower(nome) like lower(_utf8'$cidade') collate utf8_general_ci;";
+        // $sql = "SELECT id, nome FROM cidade WHERE lower(nome) like lower(_utf8'$cidade') collate utf8_general_ci;";
+        // $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+        // $r = mysqli_fetch_assoc($res);
+
+        // if ($r) {
+        //     echo $r['id'];
+        //     echo $r['nome'];
+        // } else {
+        //     $sql = "INSERT INTO cidade (id_estado, nome) VALUES ('$uf', '$cidade')";
+        //     $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+
+        //     $sql = "SELECT id FROM cidade WHERE nome='".$cidade."';";
+        //     $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+        //     $novo = mysqli_fetch_assoc($res);
+        //     echo $novo['id'];
+        //     echo $novo['nome'];
+        // }
+
+
+        require_once('connect.php');
+        // $busca = "nome";
+        $busca = "04295619116";
+        $sql = "SELECT * FROM cliente where lower(nome) like lower(_utf8'%$busca%') collate utf8_general_ci;";
         $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
-        $r = mysqli_fetch_assoc($res);
 
-        if ($r) {
-            echo $r['id'];
-            echo $r['nome'];
+        // while ($r = mysqli_fetch_assoc($res)) {
+        //     echo ($r['nome'])."<br>";
+        // }
+
+        if (mysqli_num_rows($res)) {
+            // echo ("tem o ".$nome);
+            // while ($r = mysqli_fetch_assoc($res)) {
+            //     echo ("Nome: ".$r['nome'])."<br>";
+            // }
+            lista($res);
         } else {
-            $sql = "INSERT INTO cidade (id_estado, nome) VALUES ('$uf', '$cidade')";
+            echo ("cpf");
+            $sql = "SELECT * FROM cliente where cpf=$busca";
             $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
-
-            $sql = "SELECT id FROM cidade WHERE nome='".$cidade."';";
-            $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
-            $novo = mysqli_fetch_assoc($res);
-            echo $novo['id'];
-            echo $novo['nome'];
+            lista($res);
         }
     
     
+
+        <!-- <script>
+    $("#botao-busca").click(function() {
+        busca = $("#campo-busca").val();
+        if (!busca) {
+            alert("O campo de busca deve ser preenchido!");
+        } else {
+            // window.location.href="../resources/buscaCliente.php?campo-busca="+busca;
+            $("#tabela").append("<?php require('../resources/buscaClientes.php?campo-busca="'); ?>");
+        }
+    });
+</script> -->

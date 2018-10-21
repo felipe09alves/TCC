@@ -58,8 +58,8 @@
 					<div id="collapse2" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="list-group">
-								<a href="template/Abrir.html" class="list-group-item">Arbrir OS</a>
-								<a href="template/Monitorar.html" class="list-group-item">Monitorar OS</a>
+								<a href="template/AbrirOS.php" class="list-group-item">Arbrir OS</a>
+								<a href="template/MonitorarOS.php" class="list-group-item">Monitorar OS</a>
 								<a href="template/BuscarOS.html" class="list-group-item">Pesquisar</a>
 							</div>
 						</div>

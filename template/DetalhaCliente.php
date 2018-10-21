@@ -59,8 +59,8 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="Abrir.html" class="list-group-item">Arbrir OS</a>
-                                <a href="Monitorar.html" class="list-group-item">Monitorar OS</a>
+                                <a href="AbrirOS.php" class="list-group-item">Arbrir OS</a>
+                                <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
                                 <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                         detalha(); ?>
                     </div>
                     <div style="text-align: left; padding-top: 15px">
-                        <a href="CadastraCliente.php" role="button" class="btn btn-outline-primary">
+                        <a href="NovoOrcamento.php?id=<?php echo $_GET['id']; ?>" role="button" class="btn btn-outline-primary">
                             <i class="fas fa-plus"></i>&nbsp;Novo Orçamento
                         </a>
                         <button type="button" class="btn visualizar-btn" onclick="window.location.href='AlteraCliente.php?id=<?php echo $_GET['id']; ?>'">
