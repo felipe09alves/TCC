@@ -34,7 +34,7 @@
 
     function converteCidade($cidade, $uf) {
         require('connect.php');
-        $sql = "SELECT id, nome FROM cidade WHERE lower(nome) like lower(_utf8'$cidade') collate utf8_general_ci;";
+        $sql = "SELECT id, nome FROM cidade WHERE lower(nome) LIKE lower(_utf8'$cidade') collate utf8_general_ci;";
         $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
         $r = mysqli_fetch_assoc($res);
 

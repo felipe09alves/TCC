@@ -1,3 +1,4 @@
+<?php require_once('../resources/session.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +36,7 @@
                                 <a href="Funcionario.html" class="list-group-item">Funcionário</a>
                                 <a href="Modulo.html" class="list-group-item">Módulo</a>
                                 <a href="Inversor.html" class="list-group-item">Inversor</a>
-                                <a href="Irradiacao.html" class="list-group-item">Irradiação</a>
+                                <a href="Irradiacao.php" class="list-group-item">Irradiação</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Arbrir OS</a>
+                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
                                 <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
                                 <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
                             </div>
@@ -89,78 +90,33 @@
 
             <div class="row first-line">
                 <div class="col-md-3" style="text-align: center">
-                    <a href="IncluirFuncionario.html" role="button" class="btn btn-outline-primary">
+                    <a href="CadastrarIrradiacao.php" role="button" class="btn btn-outline-primary">
                         <i class="fas fa-plus"></i>&nbsp;Irradiação
                     </a>
                 </div>
                 <div class="col-md-1 col-md-2 uf">
                     <div class="form-group">
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" id="uf">
                             <option>UF</option>
-                            <option>DF</option>
-                            <option>MG</option>
-                            <option>SP</option>
+                            <?php require('../resources/exibeRegiao.php'); 
+                            estado();?>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" style="align-self: flex-end">
+                    <input id="campo-busca" type="text" class="form-control" style="align-self: flex-end" placeholder="Cidade">
                 </div>
                 <div class="col-md-3">
-                    <button type="button" role="button" class="btn btn-outline-secondary">
+                    <button id="botao-busca" type="button" role="button" class="btn btn-outline-secondary">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
-            <div class="table tabela-exibe" align="center">
-                <table class="table-hover table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Estado</th>
-                            <th>Cidade</th>
-                            <th>Irradiação</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>MG</td>
-                            <td>João Pinheiro</td>
-                            <td style="text-align: center">
-                                <i class="fas fa-check"></i>
-                            </td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>DF</td>
-                            <td>Brasília</td>
-                            <td style="text-align: center">
-                                <i class="fas fa-check"></i>
-                            </td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id="tabela" class="table tabela-exibe" align="center">              
 
             </div>
 
         </div>
-
-    </div>
 
     </div>
 
@@ -169,5 +125,64 @@
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
+
+<script>
+
+    $("#botao-busca").click(function() {
+        ajax();
+    });
+    $("#campo-busca").keyup(function(e) {
+        if(e.keyCode == 13) {
+            ajax();
+        }
+    });
+
+    function ajax() {
+        $("#tabela").empty();
+        busca = $("#campo-busca").val();
+        uf = $("#uf").val();
+
+        if (busca.length==0 || uf==='UF') {
+            $("#tabela").append("<h4>Todos os campos devem ser preenchidos.</h4>");
+            return;
+        }
+
+        $("#tabela").append("<h5>Aguarde...</h5><div class='loader'></div> ");
+        if (window.XMLHttpRequest) {
+            // for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        } else {  // for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+            $("#tabela").empty();
+            $("#tabela").append(this.responseText);
+            }
+        }
+
+        xmlhttp.open("GET","../resources/buscaCidade.php?uf=" + uf + "&campo-busca=" + busca, true);
+        xmlhttp.send();
+    
+    }
+    
+</script>
+
+<script>
+
+    var msg = "<?php
+        if ( isset($_SESSION['confirma']) ) {
+             echo $_SESSION['confirma'];
+        }   
+    ?>";
+
+    if (msg) {
+        alert(msg);
+    }
+
+    <?php unset($_SESSION['confirma']); ?>
+
+</script>
 
 </html>

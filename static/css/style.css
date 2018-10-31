@@ -308,3 +308,55 @@ button.visualizar-btn {
     margin-top: 7px;
     margin-left: 35px;
 }
+
+.row-irradiacao {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.div-mes {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    flex-wrap: inherit;
+}
+
+.div-mes div {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 15px;
+
+}
+
+.div-mes div label {
+    margin-right: 10px;
+}
+
+.controle-center {
+    /* margin-top: 20px; */
+    display: flex;
+    justify-content: center;
+}
+
+.full-width {
+    display: block;
+    white-space: pre-wrap;
+    /* width: 100%; */
+}
+
+.text-danger {
+    font-size: .9em
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.campo {
+    -moz-appearance: textfield;
+}

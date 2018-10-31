@@ -36,7 +36,7 @@
                                 <a href="Funcionario.html" class="list-group-item">Funcionário</a>
                                 <a href="Modulo.html" class="list-group-item">Módulo</a>
                                 <a href="Inversor.html" class="list-group-item">Inversor</a>
-                                <a href="Irradiacao.html" class="list-group-item">Irradiação</a>
+                                <a href="Irradiacao.php" class="list-group-item">Irradiação</a>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Arbrir OS</a>
+                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
                                 <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
                                 <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
                             </div>
@@ -109,11 +109,12 @@
                 <div class="col-lg-5">
                     <h4>Informações do Sistema</h4>
                     <div class="card card-body card-cliente">
-                        <span>Quantidade de móduloas: 32</span>
+                        <span>Quantidade de módulos: 32</span>
                         <span>Espaço necessário: 51m²</span>
                         <span>Peso por m²: 10;5 kg/m²</span>
                         <span>Capacidade do Sistema: 8,3 kWp</span>
-                        <span>Módulo: Canadian CS6U-315B 260 Wp &nbsp;&nbsp;&nbsp; Qtd: 12</span>
+                        <span>Módulo: Canadian CS6U-315B 260 Wp</span>
+                        <span>Qtd: 12</span>
                         <span>Inversor: Fronius 4210069 kW</span>
                     </div>
                     <div style="text-align: left; padding-top: 15px">
@@ -182,32 +183,26 @@
 
     </div>
 
-    </div>
-
-
 </body>
 
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
 
-<script> /* VALIDA 'ON THE FLY' */
-    $('.campo').focusout(function() {
-                
-        if ( !$(this).val() ) {            
-            $(this).prev().text(" * Campo obrigatório").show();
-        }else {
+<script>
 
-            if (( $(this).is('[name="tarifa"]') || $(this).is('[name="consumo"]') || $(this).is('[name="frete"]') ) && 
-            !$.isNumeric($(this).val()) ) {
-                $(this).prev().text(" * Valor Inválido").show();
-            } else {
-                $(this).prev().hide();
-            }
+    var msg = "<?php
+        if ( isset($_SESSION['confirma']) ) {
+             echo $_SESSION['confirma'];
+        }   
+    ?>";
 
-        }
-      
-    });
+    if (msg) {
+        alert(msg);
+    }
+
+    <?php unset($_SESSION['confirma']); ?>
+
 </script>
 
 <script>

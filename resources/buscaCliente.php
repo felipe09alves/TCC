@@ -4,7 +4,7 @@
     $busca = $_GET['campo-busca'];
     require_once('connect.php');
     
-    $sql = "SELECT * FROM cliente where lower(nome) like lower(_utf8'%$busca%') collate utf8_general_ci;";
+    $sql = "SELECT * FROM cliente WHERE LOWER(nome) LIKE LOWER(_utf8'%$busca%') collate utf8_general_ci;";
     $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 
     if (mysqli_num_rows($res)) {

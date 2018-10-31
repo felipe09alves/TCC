@@ -1,3 +1,4 @@
+<?php require_once('../resources/session.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +36,7 @@
                                 <a href="Funcionario.html" class="list-group-item">Funcionário</a>
                                 <a href="Modulo.html" class="list-group-item">Módulo</a>
                                 <a href="Inversor.html" class="list-group-item">Inversor</a>
-                                <a href="Irradiacao.html" class="list-group-item">Irradiação</a>
+                                <a href="Irradiacao.php" class="list-group-item">Irradiação</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Arbrir OS</a>
+                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
                                 <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
                                 <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
                             </div>
@@ -83,81 +84,89 @@
                 </div>
             </div>
         </div>
+        <?php require('../resources/exibeIrradiacao.php');?>
+        <form method="post" action="../resources/salvaIrradiacao.php?cidade=<?php echo $_GET['cidade'];?>" class="main">
+            <h1 class="titulo">Cadastrar de Índice de Irradiação</h1>
 
-        <div class="main">
-            <h1 class="titulo">Cadastro de Cliente</h1>
-
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-6">
-                    <label for="nome">Nome:</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Nome">
+            <div class="row first-line">
+                <div class="col-md-3"></div>
+                <div class="col-md-2 uf">
+                    <div class="form-group">
+                        <select class="form-control" id="uf" disabled>
+                            <?php estado($_GET['uf']);?>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="cpf">CPF:</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00">
-                </div>
+                <div class="col-md-4">
+                    <?php cidade($_GET['cidade']);?>
+                </div>                
             </div>
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-6">
-                    <label for="email">e-mail:</label>
-                    <input type="text" class="form-control" id="email" placeholder="e-mail">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="fone">Telefone:</label>
-                    <input type="text" class="form-control" id="fone" placeholder="(xx) xxxx-xxxx">
-                </div>
+            <div class="row row-irradiacao">
+                
+                <?php irradiacao($_GET['cidade']);?>
+                
             </div>
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-2">
-                    <label for="uf">Estado:</label>
-                    <select type="text" class="form-control" id="uf" placeholder="UF">
-                        <option disabled selected>UF</option>
-                        <option value="">DF</option>
-                        <option value="">MG</option>
-                    </select>
+            <div class="row controle controle-center">
+                
+                <div class="col-md-2">
+                    <a id="" href="Irradiacao.php" class="btn btn-outline-danger btn-sm">
+                        <i class="fas fa-times"></i>&nbsp;Cancelar
+                    </a> 
                 </div>
-                <div class="form-group col-md-7">
-                    <label for="cidade">Cidade:</label>
-                    <input type="text" class="form-control" id="cidade" placeholder="Cidade">
-                </div>
+                <div class="col-md-3">
+                    <button id="cadastrar" href="" type="submit" role="button" class="btn btn-outline-primary">
+                        <i class="fas fa-plus"></i>&nbsp;Cadastrar Irradiação
+                    </button>
+                </div>                
+
             </div>
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-9">
-                    <label for="endereco">Endereço:</label>
-                    <input type="text" class="form-control" id="endereco" placeholder="Endereço">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-9">
-                    <label for="imovel">Imóvel:</label>
-                    <select type="text" class="form-control" id="imovel">
-                        <option disabled selected>Tipo</option>
-                        <option value="">Comercial</option>
-                        <option value="">Residencial</option>
-                        <option value="">Rural</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-    </div>
+        </form>
 
     </div>
 
 
 </body>
-<?php require_once('connect.php'); ?>
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
+
+<script> /* VALIDA AO DIGITAR  */
+    $('.campo').on('keyup', function() {
+                
+        if ( !$(this).val() ) {
+            $(this).parent().prev().text(" * Campo obrigatório").show();
+        }else {
+
+            if ( $(this).val() <= 0 ) {
+                $(this).parent().prev().text(" * Valor Inválido").show();
+            } else {
+                $(this).parent().prev().hide();
+            }
+
+        }
+      
+    });
+</script>
+
+<script> /* VALIDA NO SUBMIT */
+    $( "form" ).submit(function( event ) {
+
+        $(".campo").each(function() {
+            
+            if ( !$(this).val() ) {
+               $(this).parent().prev().text(" * Campo obrigatório").show();
+                event.preventDefault();
+            } else if ( $(this).val() <= 0 ) {
+                $(this).parent().prev().text(" * Valor Inválido").show();
+                event.preventDefault();
+            }
+            
+        });
+
+    });
+</script>
 
 </html>

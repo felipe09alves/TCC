@@ -36,7 +36,7 @@
                                 <a href="Funcionario.html" class="list-group-item">Funcionário</a>
                                 <a href="Modulo.html" class="list-group-item">Módulo</a>
                                 <a href="Inversor.html" class="list-group-item">Inversor</a>
-                                <a href="Irradiacao.html" class="list-group-item">Irradiação</a>
+                                <a href="Irradiacao.php" class="list-group-item">Irradiação</a>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Arbrir OS</a>
+                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
                                 <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
                                 <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
                             </div>
@@ -195,8 +195,8 @@
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
 
-<script> /* VALIDA 'ON THE FLY' */
-    $('.campo').focusout(function() {
+<script> /* VALIDA AO DIGITAR  */
+    $('.campo').on('keyup', function() {
                 
         if ( !$(this).val() ) {            
             $(this).prev().text(" * Campo obrigatório").show();
