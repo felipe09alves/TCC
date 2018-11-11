@@ -51,21 +51,12 @@
 
     }
 
-    // echo json_encode($res);
-
     $r['atual'] = getData ( $connection, $inicial, $final, $uf, $cidade, $imovel );
-    // $r['anterior'] = getData ( $connection, $novaInicial, $novaFinal, $uf, $cidade, $imovel );
-
     $res['total'] = 0;
-    // $r['totalAnterior'] = 0;
 
     for ($i = 0; $i < ( count($r['atual']) ); $i++) {
         $res['total'] += $r['atual'][$i]['vendas'];
     }
-
-    // for ($i = 0; $i < ( count($r['anterior']) ); $i++) {
-    //     $r['totalAnterior'] += $r['anterior'][$i]['vendas'];
-    // }
 
     $json = json_encode($res);
     echo $json;
@@ -100,14 +91,10 @@
         JOIN CIDADE ON CLIENTE.ID_CIDADE = CIDADE.ID
         WHERE data_abertura BETWEEN '$inicial' AND '$final'$where
         GROUP BY OS.DATA_ABERTURA ORDER BY OS.DATA_ABERTURA";
-        // echo $sql."
-        // ";
+        
         $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
-
-        // $array['data']=0;
-        // $array['vendas']=0;
+        
         $i=0;
-
         while ($r = mysqli_fetch_assoc($res)) {
             $array[$i]['data'] = $r['abertura'];
             $array[$i]['vendas'] = $r['vendas'];
@@ -130,14 +117,10 @@
         JOIN ESTADO ON CIDADE.ID_ESTADO = ESTADO.ID
         WHERE DATA_ABERTURA BETWEEN '$inicial' AND '$final' 
         GROUP BY CIDADE ORDER BY VENDAS DESC";
-        // echo $sql."
-        // ";
+        
         $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
-
-        // $array['data']=0;
-        // $array['vendas']=0;
+        
         $i=0;
-
         while ($r = mysqli_fetch_assoc($res)) {
             $array[$i]['cidade'] = $r['cidade'];
             $array[$i]['vendas'] = $r['vendas'];
@@ -190,8 +173,7 @@
     function getCidade ($connection, $id_cidade) {
         
         $sql = "SELECT nome FROM CIDADE WHERE ID='$id_cidade'";
-        $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
-        
+        $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));        
 
         while ($r = mysqli_fetch_assoc($res)) {
             $cidade = $r['nome'];
@@ -218,8 +200,6 @@
         $i=0;
 
         while ($r = mysqli_fetch_assoc($res)) {
-            // $array['cidade'] = $r['cidade'];
-            // $array['estado'] = $r['estado'];
             $array[$i]['data'] = $r['abertura'];
             $array[$i]['vendas'] = $r['vendas'];
             $i++;

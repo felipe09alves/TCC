@@ -96,8 +96,7 @@
                 <div class="col-lg-8 row filtro">
 
                     <div class="col-md-12">
-                        <!-- <p>Filtrar por:</p> -->
-                        
+                    
                         <div class="row mb-5">
 
                             <div class="col-md-1"></div>
@@ -139,7 +138,6 @@
 
                             <div class="col-md-6" style="text-align: left">
                                 <div class="form-check">
-                                    <!-- <input id="campo-busca" name="cidade" type="text" class="form-control" style="align-self: flex-end" placeholder="Cidade"> -->
                                     <input id="campo-busca" name="cidade" type="text" class="form-control ui-autocomplete-input" style="align-self: flex-end" placeholder="Cidade" autocomplete="off" disabled>
                                 </div>
                             </div>
@@ -212,45 +210,12 @@
 
 
 <script>
-
     $("#botao-busca").click(function() {
         ajax();
     });
-
-    
-        function ajaxAlt() {
-            $("#tabela").empty();
-            busca = $("#campo-busca").val();
-
-            if (busca.length==0) {
-                $("#tabela").append("<h4>Todos os campos devem ser preenchidos.</h4>");
-                return;
-            }
-
-            $("#tabela").append("<h5>Aguarde...</h5><div class='loader'></div> ");
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp=new XMLHttpRequest();
-            } else {  // code for IE6, IE5
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange=function() {
-                if (this.readyState==4 && this.status==200) {
-                $("#tabela").empty();
-                $("#tabela").append(this.responseText);
-                }
-            }
-
-            xmlhttp.open("GET","../resources/buscaCliente.php?campo-busca="+busca,true);
-            xmlhttp.send();
-    
-        }
-    
 </script>
 
 <script>
-    // $(function() {
     $("#uf").change(function() {
 
         uf= $(this).val();        
@@ -307,25 +272,33 @@
             $("#total-vendas").text(jsonVendas.total);
 
             if (jsonVendas.maior !== null) {
-                $("#grafico-menor").show();
+
+                $("#grafico-maior").show();
                 montaAtual(jsonVendas.maior);
                 $("#regiaoMaior").prev().show();
                 textoMaior = "Maior Crescimento: "+jsonVendas.maiorRegiao.cidade+" "+jsonVendas.maiorRegiao.estado;
                 $("#regiaoMaior").text(textoMaior);
+
             } else {
-                $("#regiaoMaior").text('');
-                $("#grafico-menor").hide();
+
+                $("#regiaoMaior").text('Dados nsuficientes para período selecionado.');
+                $("#grafico-maior").hide();
+
             }
 
             if (jsonVendas.menor !== null) {
-                $("#grafico-maior").show();
+
+                $("#grafico-menor").show();
                 montaAnterior(jsonVendas.menor);
                 $("#regiaoMenor").prev().show();
                 textoMenor = "Maior Queda - "+jsonVendas.menorRegiao.cidade+" "+jsonVendas.menorRegiao.estado;
                 $("#regiaoMenor").text(textoMenor);
+
             } else {
-                $("#regiaoMenor").text('');
-                $("#grafico-maior").hide();
+
+                $("#regiaoMenor").text('Dados insuficientes para período selecionado.');
+                $("#grafico-menor").hide();
+
             }
             
         });
