@@ -18,7 +18,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a href="../index.html">
+                            <a href="../index.php">
                                 <i class="fas fa-home"></i> &nbsp;Home</a>
                         </h4>
                     </div>
@@ -61,7 +61,7 @@
                             <div class="list-group">
                                 <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
                                 <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
-                                <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
+                                <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
                     </div>
@@ -76,8 +76,8 @@
                     <div id="collapse3" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="RelatorioAcompanhamento.html" class="list-group-item">Acompanhamento</a>
-                                <a href="RelatorioVendas.html" class="list-group-item">Vendas</a>
+                                <a href="RelatorioAcompanhamento.php" class="list-group-item">Acompanhamento</a>
+                                <a href="RelatorioVendas.php" class="list-group-item">Vendas</a>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,8 @@
             </div>
         </div>
 
-        <form method="post" action="../resources/salvaOrcamento.php?id=<?php echo $_GET['id']; ?>" class="main">
+        <form method="post" action="VisualizarOrcamento.php?id=<?php echo $_GET['id']; ?>" class="main">
+        <!-- <form method="post" action="../resources/salvaOrcamento.php?id=<?php echo $_GET['id']; ?>" class="main"> -->
             <h1 class="titulo">Novo Orçamento</h1>           
             
             <div id="cliente-main" class="row" style="display: flex; justify-content: center;">
@@ -102,11 +103,11 @@
                         <div class="col-md-1"></div>
                         <div class="form-group col-md-5">
                             <label for="consumo">Consumo anual:</label><span class="text-danger"></span>
-                            <input type="number" class="form-control campo" name="consumo" placeholder="R$ 00,00" value="">
+                            <input type="number" class="form-control campo" name="consumo" placeholder="R$ 00,00" value="" step="any">
                         </div>
                         <div class="form-group col-md-5">
                             <label for="tarifa">Tarifa:</label><span class="text-danger"></span>
-                            <input type="number" class="form-control campo" name="tarifa" placeholder="R$ 00,00">
+                            <input type="number" class="form-control campo" name="tarifa" placeholder="R$ 00,00" step="any">
                         </div>
                     </div>
 
@@ -141,7 +142,7 @@
                         </div>
                         <div class="form-group col-md-5">
                             <label for="frete">Frete:</label><span class="text-danger"></span>
-                            <input type="number" class="form-control campo" name="frete" placeholder="R$ 00,00">
+                            <input type="number" class="form-control campo" name="frete" placeholder="R$ 00,00" step="any">
                         </div>
                     </div>
 

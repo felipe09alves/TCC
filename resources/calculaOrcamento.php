@@ -2,7 +2,7 @@
 <?php
 
     require('connect.php');
-    $sql_orcamento = "SELECT * FROM orcamento where id = ".$id;
+    $sql_orcamento = "SELECT * FROM orcamento where id = ".$_GET['id'];
     $res_orcamento = mysqli_query($connection, $sql_orcamento) or die(mysqli_error($connection_orcamento));
 
     while ($r = mysqli_fetch_assoc($res_orcamento)) {
@@ -19,22 +19,18 @@
     $modulo = buscaModulo($id_modulo, $connection);
     $inversor = buscaInversor($id_inversor, $connection);
 
-    echo $modulo['peso']."<br>";
-    echo $inversor['modelo']."<br>";
-    echo $inversor['potencia']."<br><br>";
-
     //CONSTANTES
     $conversaoMonetaria = 4440;
-    $maoObra = 0.5;
+    $maoObra = 500;
     $margemLiquida = 0.3;
     $imposto = 0.07;
     
     //ORÇAMENTO
     $irradiacaoMedia = irradiacaoMedia($cliente, $connection);
     $fatorConversao = fatorConversao($irradiacaoMedia);
-    $consumoInicial = $fatorConversao * $consumo;
-    $geracaoMensal = $modulo['potencia'] * $fatorConversao;
-    $qtdModulos = ceil( $consumoInicial / $modulo['potencia'] );
+    $geracaoMensal = $modulo['tamanho'] * $fatorConversao;
+    $capacidadeInicial = floor( $consumo / $geracaoMensal * $modulo['potencia'] / 100 )* 100;
+    $qtdModulos = floor( $capacidadeInicial / $modulo['potencia'] );
     $espaco = $qtdModulos * $modulo['tamanho'];
     $peso = $espaco * $modulo['peso'];
     $capacidadeFinal = $qtdModulos * $modulo['potencia'] / 1000;
@@ -42,20 +38,38 @@
     $custoInstalacao = $capacidadeFinal * $maoObra;
     $margemOperacional = ( $custoInicial + $custoInstalacao ) * $margemLiquida;
     $custoFinal = ( $custoInicial + $custoInstalacao + $margemOperacional + $frete ) / ( 1 - $imposto );
-
+    $custoFinalFormatado = number_format($custoFinal, 2, ',', '.');
 
     //PAYBACK
+    $producaoAnual = floor($qtdModulos * $geracaoMensal * 12);
+    $economiaAnual = $producaoAnual * $tarifa;
+    $economiaAnualFormatado = number_format($custoFinal, 2, ',', '.');
+    $payback = floor($custoFinal / $economiaAnual *10 ) / 10;
+    $independencia = floor( $producaoAnual / 12 / $consumo * 100 );
 
+?>
 
+    <h4>Informações do Sistema</h4>
+    <div class="card card-body card-cliente">
+        <span>Quantidade de módulos: <?php echo $qtdModulos ?></span>
+        <span>Espaço necessário: <?php echo $espaco ?> m²</span>
+        <span>Peso total: <?php echo $peso ?> kg</span>
+        <span>Capacidade do Sistema: <?php echo $capacidadeFinal ?> kWp</span>
+        <span>Módulo: <?php echo $modulo['marca']." ".$modulo['modelo']." ".$modulo['potencia'] ?> Wp</span>
+        <span>Qtd: <?php echo $qtdModulos ?></span>
+        <span>Inversor: <?php echo $inversor['marca']." ".$inversor['modelo']." ".$inversor['potencia'] ?> kW</span>
+    </div>
+    <div style="text-align: left; padding-top: 15px">
+        <h4>Economia</h4>
+        <div class="card card-body card-cliente">
+            <span>Produção Anual do Sistema: <?php echo $producaoAnual ?> kWh</span>
+            <span>Economia Anual: R$ <?php echo $economiaAnualFormatado ?></span>
+            <span>Fator de Independência: <?php echo $independencia ?>%</span>
+            <h5>Payback: <?php echo $payback ?> anos</h5>
+        </div>
+    </div>
 
-
-
-    // echo $capacidadeFinal;
-
-
-
-
-    
+<?php
 
     function irradiacaoMedia($cliente, $connection) {
 
@@ -76,7 +90,7 @@
 
     function fatorConversao($irradiacaoMedia) {
 
-        $perda = 0.05;
+        $perda = 0.13778;
         $fator = $irradiacaoMedia * $perda * 0.03;
         return $fator;
 
@@ -119,4 +133,6 @@
         return $inversor;
 
     }
+
+    
 ?>

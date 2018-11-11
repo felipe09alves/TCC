@@ -18,7 +18,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a href="../index.html">
+                            <a href="../index.php">
                                 <i class="fas fa-home"></i> &nbsp;Home</a>
                         </h4>
                     </div>
@@ -61,7 +61,7 @@
                             <div class="list-group">
                                 <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
                                 <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
-                                <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
+                                <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
                     </div>
@@ -76,8 +76,8 @@
                     <div id="collapse3" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="RelatorioAcompanhamento.html" class="list-group-item">Acompanhamento</a>
-                                <a href="RelatorioVendas.html" class="list-group-item">Vendas</a>
+                                <a href="RelatorioAcompanhamento.php" class="list-group-item">Acompanhamento</a>
+                                <a href="RelatorioVendas.php" class="list-group-item">Vendas</a>
                             </div>
                         </div>
                     </div>

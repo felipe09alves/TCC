@@ -85,70 +85,51 @@
             </div>
         </div>
 
-        <form method="post" action="../resources/addCliente.php" class="main">
-            <h1 class="titulo">Cadastro de Cliente</h1>            
+        <!-- <form method="post" action="../resources/addCliente.php" class="main"> -->
+        <div class="main">
+            <h1 class="titulo">Cadastro de Módulo</h1>            
             <div class="row">
                 <div class="col-md-1"></div>
-                <div class="form-group col-md-6">
-                    <label for="nome">Nome:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="nome" placeholder="Nome" value="">
+                <div class="form-group col-md-4">
+                    <label for="nome">Marca:</label><span class="text-danger"></span>
+                    <input type="text" class="form-control campo" name="nome" placeholder="Marca" value="">
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="cpf">CPF:</label><span class="text-danger"></span>
-                    <input id="cpf" type="number" class="form-control campo" name="cpf" placeholder="000.000.000-00" maxlength="11">
+                <div class="form-group col-md-4">
+                    <label for="cpf">Modelo:</label><span class="text-danger"></span>
+                    <input id="cpf" type="text" class="form-control campo" name="cpf" placeholder="Modelo">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-1"></div>
-                <div class="form-group col-md-6">
-                    <label for="email">e-mail:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="email" placeholder="e-mail">
+                <div class="form-group col-md-3">
+                    <label for="nome">Potência:</label><span class="text-danger"></span>
+                    <input type="number" class="form-control campo" name="nome" placeholder="Potência" value="">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="fone">Telefone:</label><span class="text-danger"></span>
-                    <input type="number" class="form-control campo" name="telefone" placeholder="(xx) xxxx-xxxx">
+                    <label for="cpf">Peso:</label><span class="text-danger"></span>
+                    <input id="number" type="number" class="form-control campo" name="cpf" placeholder="Peso">
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-1"></div>
                 <div class="form-group col-md-2">
-                    <label for="uf">Estado:</label><span class="text-danger"></span>
-                    <select type="text" class="form-control campo" name="uf" placeholder="UF">
-                        <option disabled selected>UF</option>
-                        <?php require('../resources/exibeRegiao.php'); 
-                        estado();?>
-                    </select>
-                </div>
-                <div class="form-group col-md-7">
-                    <label for="cidade">Cidade:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="cidade" placeholder="Cidade">
+                    <label for="cpf">Tamanho:</label><span class="text-danger"></span>
+                    <input id="number" type="number" class="form-control campo" name="cpf" placeholder="Tamanho">
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-md-1"></div>
-                <div class="form-group col-md-9">
-                    <label for="endereco">Endereço:</label><span class="text-danger"></span>
-                    <input type="text" class="form-control campo" name="endereco" placeholder="Endereço">
+                <div class="form-group col-md-3">
+                    <label for="nome">Garantia de Defeito:</label><span class="text-danger"></span>
+                    <input type="number" class="form-control campo" name="nome" placeholder="Marca" value="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="cpf">Garantia de Eficiência:</label><span class="text-danger"></span>
+                    <input id="cpf" type="number" class="form-control campo" name="cpf" placeholder="Modelo">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="form-group col-md-9">
-                    <label for="imovel">Imóvel:</label><span class="text-danger"></span>
-                    <select type="text" class="form-control campo" name="imovel">
-                        <option disabled selected>Tipo</option>
-                        <option value="comercial">Comercial</option>
-                        <option value="residencial">Residencial</option>
-                        <option value="rural">Rural</option>
-                    </select>
-                </div>
-            </div>
             
-            <div class="row">
+            <div class="row" style="margin-top: 40px">
                 <div class="col-md-5"></div>
                 <div class="col-md-2">
                     <a id="" href="Irradiacao.php" class="btn btn-outline-danger btn-sm">
@@ -157,11 +138,12 @@
                 </div>
                 <div class="col-md-3" style="text-align: right">
                     <button id="cadastrar" href="" type="submit" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Cadastrar Cliente
+                        <i class="fas fa-plus"></i>&nbsp;Cadastrar Módulo
                     </button>
                 </div>
             </div>
-        </form>
+        <!-- </form> -->
+        </div>
 
     </div>
 

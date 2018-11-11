@@ -360,3 +360,57 @@ input::-webkit-inner-spin-button {
 .campo {
     -moz-appearance: textfield;
 }
+
+#total {
+    background-color: transparent;
+}
+
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+
+.col-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(227, 252, 235, 0.68);
+}
+
+.custom-canvas {
+    width: 100% !important;
+}
+
+@media (min-width: 767px) and (max-width: 914px) {
+    canvas {
+        height: 100% !important;
+    }
+}
+
+.filtro,
+.col-md-12,
+.row.mb-5 div {
+    padding: 0 10px;
+}
+
+.img-main {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.img-main img {
+    height: 20vh;
+}
+
+.login-box {
+    padding-top: 2.5em;
+    max-width: 30vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.ui-autocomplete {
+    z-index: 100;
+}

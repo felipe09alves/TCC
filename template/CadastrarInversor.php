@@ -76,8 +76,8 @@
                     <div id="collapse3" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="RelatorioAcompanhamento.html" class="list-group-item">Acompanhamento</a>
-                                <a href="RelatorioVendas.html" class="list-group-item">Vendas</a>
+                                <a href="RelatorioAcompanhamento.php" class="list-group-item">Acompanhamento</a>
+                                <a href="RelatorioVendas.php" class="list-group-item">Vendas</a>
                             </div>
                         </div>
                     </div>
@@ -85,10 +85,49 @@
             </div>
         </div>
 
-        <form method="post" action="../resources/salvaCliente.php" class="main">
-            <?php require('../resources/editCliente.php'); ?>
-        </form>
-        
+        <!-- <form method="post" action="../resources/addCliente.php" class="main"> -->
+        <div class="main">
+            <h1 class="titulo">Cadastro de Inversor</h1>            
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="form-group col-md-4">
+                    <label for="nome">Marca:</label><span class="text-danger"></span>
+                    <input type="text" class="form-control campo" name="nome" placeholder="Marca" value="">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="nome">Potência:</label><span class="text-danger"></span>
+                    <input type="number" class="form-control campo" name="nome" placeholder="Potência" value="">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="form-group col-md-4">
+                    <label for="cpf">Modelo:</label><span class="text-danger"></span>
+                    <input id="cpf" type="text" class="form-control campo" name="cpf" placeholder="Modelo">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="cpf">Tamanho:</label><span class="text-danger"></span>
+                    <input id="number" type="number" class="form-control campo" name="cpf" placeholder="Tamanho">
+                </div>
+            </div>
+            
+            <div class="row" style="margin-top: 40px">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <a id="" href="Irradiacao.php" class="btn btn-outline-danger btn-sm">
+                        <i class="fas fa-times"></i>&nbsp;Cancelar
+                    </a> 
+                </div>
+                <div class="col-md-3" style="text-align: right">
+                    <button id="cadastrar" href="" type="submit" role="button" class="btn btn-outline-primary">
+                        <i class="fas fa-plus"></i>&nbsp;Cadastrar Inversor
+                    </button>
+                </div>
+            </div>
+        <!-- </form> -->
+        </div>
+
     </div>
 
 </body>
@@ -98,21 +137,34 @@
 <script src="../static/fontawesome/js/all.min.js"></script>
 
 <script> /* VALIDA AO DIGITAR  */
-    $('.campo').on('keyup', function() {
-                
-        if ( !$(this).val() ) {            
+    $('.campo').on('keyup change', function() {
+
+        if ( !$(this).val() ) {
             $(this).prev().text(" * Campo obrigatório").show();
         }else {
 
-            if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]') ) && 
-            !$.isNumeric($(this).val()) ) {
-                $(this).prev().text(" * Valor Inválido").show();
+            if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]') ))  {
+
+                if ( $(this).val() < 0 ) {
+                    $(this).prev().text(" * Valor Inválido").show();
+                }else if ( $(this).is('[name="cpf"]') ) {
+
+                    //Valida CPF
+                    cpf = $(this).val();
+                    check = TestaCPF(cpf);
+                    if (check===false) {
+                        $(this).prev().text(" * Valor Inválido").show();
+                    }else {
+                        $(this).prev().hide();
+                    }
+                }
+
             } else {
                 $(this).prev().hide();
             }
+            
+        }  
 
-        }
-      
     });
 </script>
 
@@ -125,26 +177,55 @@
                 $(this).prev().text(" * Campo obrigatório").show();
                 event.preventDefault();
             } else {
-                if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]') ) && 
-                !$.isNumeric($(this).val()) ) {
-                    $(this).prev().text(" * Valor Inválido").show();
-                    event.preventDefault();
-                } 
-            }        
+                if (( $(this).is('[name="cpf"]') || $(this).is('[name="telefone"]') ))  {
+
+                    if ( $(this).val() < 0 ) {
+                        $(this).prev().text(" * Campo obrigatório").show();
+                        event.preventDefault();
+                    }else if ( $(this).is('[name="cpf"]') ) {
+
+                        //Valida CPF
+                        cpf = $(this).val();
+                        check = TestaCPF(cpf);
+                        if (check===false) {
+                            $(this).prev().text(" * Campo obrigatório").show();
+                            event.preventDefault();
+                        }
+
+                    }
+
+                }
+            
+            }
             
         });
 
     });
 </script>
 
-<style>
-/* .form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: red;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem red;
-} */
-</style>
+<script>
+    function TestaCPF(strCPF) {
+        var Soma;
+        var Resto;
+        Soma = 0;
+    if (strCPF == "00000000000") return false;
+
+    if ((strCPF.substring(11, 12))) return false;
+
+    for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+    
+        if ((Resto == 10) || (Resto == 11))  Resto = 0;
+        if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+    
+    Soma = 0;
+        for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
+    
+        if ((Resto == 10) || (Resto == 11))  Resto = 0;
+        if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+        return true;
+    }
+</script>
 
 </html>

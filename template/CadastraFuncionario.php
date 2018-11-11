@@ -85,8 +85,9 @@
             </div>
         </div>
 
-        <form method="post" action="../resources/addCliente.php" class="main">
-            <h1 class="titulo">Cadastro de Cliente</h1>            
+        <!-- <form method="post" action="../resources/addCliente.php" class="main"> -->
+        <div class="main">
+            <h1 class="titulo">Cadastro de Funcionário</h1>            
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="form-group col-md-6">
@@ -137,13 +138,22 @@
 
             <div class="row">
                 <div class="col-md-1"></div>
-                <div class="form-group col-md-9">
-                    <label for="imovel">Imóvel:</label><span class="text-danger"></span>
+                <div class="form-group col-md-4">
+                    <label for="imovel">Cargo:</label><span class="text-danger"></span>
                     <select type="text" class="form-control campo" name="imovel">
                         <option disabled selected>Tipo</option>
-                        <option value="comercial">Comercial</option>
-                        <option value="residencial">Residencial</option>
-                        <option value="rural">Rural</option>
+                        <option value="comercial">Funcionário Administrativo</option>
+                        <option value="residencial">Engenheiro</option>
+                        <option value="rural">Eletricista</option>
+                    </select>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-4">
+                    <label for="imovel">Perfil:</label><span class="text-danger"></span>
+                    <select type="text" class="form-control campo" name="imovel">
+                        <option disabled selected>Tipo</option>
+                        <option value="usuario">Usuário</option>
+                        <option value="administrador">Administrador</option>
                     </select>
                 </div>
             </div>
@@ -157,11 +167,12 @@
                 </div>
                 <div class="col-md-3" style="text-align: right">
                     <button id="cadastrar" href="" type="submit" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Cadastrar Cliente
+                        <i class="fas fa-plus"></i>&nbsp;Cadastrar Funcionário
                     </button>
                 </div>
             </div>
-        </form>
+        <!-- </form> -->
+        </div>
 
     </div>
 

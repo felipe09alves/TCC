@@ -17,7 +17,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a href="../index.html">
+                            <a href="../index.php">
                                 <i class="fas fa-home"></i> &nbsp;Home</a>
                         </h4>
                     </div>
@@ -60,7 +60,7 @@
                             <div class="list-group">
                                 <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
                                 <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
-                                <a href="BuscarOS.html" class="list-group-item">Pesquisar</a>
+                                <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
                     </div>
@@ -75,8 +75,8 @@
                     <div id="collapse3" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="RelatorioAcompanhamento.html" class="list-group-item">Acompanhamento</a>
-                                <a href="RelatorioVendas.html" class="list-group-item">Vendas</a>
+                                <a href="RelatorioAcompanhamento.php" class="list-group-item">Acompanhamento</a>
+                                <a href="RelatorioVendas.php" class="list-group-item">Vendas</a>
                             </div>
                         </div>
                     </div>
@@ -85,26 +85,12 @@
         </div>
 
         <div class="main">
-            <h1 class="titulo">Consulta de Índice de Irradiação</h1>
+            <h1 class="titulo">Consulta de Ordem de Serviço</h1>
 
             <div class="row first-line">
-                <div class="col-md-3" style="text-align: center">
-                    <a href="IncluirFuncionario.html" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Irradiação
-                    </a>
-                </div>
-                <div class="col-md-1 col-md-2 uf">
-                    <div class="form-group">
-                        <select class="form-control" id="sel1">
-                            <option>UF</option>
-                            <option>DF</option>
-                            <option>MG</option>
-                            <option>SP</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" style="align-self: flex-end">
+                <div class="col-md-2" style="text-align: center"></div>
+                <div class="col-md-7" style="display: flex">
+                    <input type="text" class="form-control" style="align-self: flex-end" placeholder="Cliente">
                 </div>
                 <div class="col-md-3">
                     <button type="button" role="button" class="btn btn-outline-secondary">
@@ -116,40 +102,44 @@
                 <table class="table-hover table-responsive">
                     <thead>
                         <tr>
-                            <th>Estado</th>
-                            <th>Cidade</th>
-                            <th>Irradiação</th>
+                            <th>Número</th>
+                            <th>Cliente</th>
+                            <th>Status</th>
+                            <th>Telefone</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>MG</td>
-                            <td>João Pinheiro</td>
-                            <td style="text-align: center">
-                                <i class="fas fa-check"></i>
-                            </td>
+                            <td>0001</td>
+                            <td>John</td>
+                            <td>Aberta</td>
+                            <td>(99) 9999-9999</td>
                             <td>
                                 <button type="button" class="btn visualizar-btn">
                                     <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
                                 </button>
                             </td>
                         </tr>
                         <tr>
-                            <td>DF</td>
-                            <td>Brasília</td>
-                            <td style="text-align: center">
-                                <i class="fas fa-check"></i>
-                            </td>
+                            <td>0002</td>
+                            <td>Mary</td>
+                            <td>Fechada</td>
+                            <td>(99) 9999-9999</td>
                             <td>
                                 <button type="button" class="btn visualizar-btn">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0003</td>
+                            <td>July</td>
+                            <td>Fechada</td>
+                            <td>(99) 9999-9999</td>
+                            <td>
+                                <button type="button" class="btn visualizar-btn">
+                                    <i class="fas fa-eye"></i>
                                 </button>
                             </td>
                         </tr>

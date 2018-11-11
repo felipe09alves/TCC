@@ -17,7 +17,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a href="index.html">
+							<a href="index.php">
 								<i class="fas fa-home"></i> &nbsp;Home</a>
 						</h4>
 					</div>
@@ -60,7 +60,7 @@
 							<div class="list-group">
 								<a href="template/AbrirOS.php" class="list-group-item">Abrir OS</a>
 								<a href="template/MonitorarOS.php" class="list-group-item">Monitorar OS</a>
-								<a href="template/BuscarOS.html" class="list-group-item">Pesquisar</a>
+								<a href="template/BuscarOS.php" class="list-group-item">Pesquisar</a>
 							</div>
 						</div>
 					</div>
@@ -75,8 +75,8 @@
 					<div id="collapse3" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="list-group">
-								<a href="template/RelatorioAcompanhamento.html" class="list-group-item">Acompanhamento</a>
-								<a href="template/RelatorioVendas.html" class="list-group-item">Vendas</a>
+								<a href="template/RelatorioAcompanhamento.php" class="list-group-item">Acompanhamento</a>
+								<a href="template/RelatorioVendas.php" class="list-group-item">Vendas</a>
 							</div>
 						</div>
 					</div>
@@ -84,9 +84,9 @@
 			</div>
 		</div>
 
-		<div class="main">
-			<h1 class="titulo">Sol Lar</h1>
-
+		<div class="main img-main">
+			<!-- <h1 class="titulo">Sol Lar</h1> -->
+			<img class="text-center" src="./static/logo.svg" alt="">
 
 
 
