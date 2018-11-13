@@ -4,7 +4,7 @@
 
     $contrato = $_GET['id_contrato'];
     if (isset($_POST) & !empty($_POST)) {
-        // $eletricistas = ($_POST['eletricistas']);
+        $eletricistas = ($_POST['eletricistas']);
         $atividade = ($_POST['atividade']);
         $duracao = ($_POST['duracao']);
         $abertura = ($_POST['abertura']);
@@ -20,7 +20,7 @@
         $duracaoTotal += $duracao[$i];
     }
 
-    $sql_OS = "INSERT INTO OS (ID_CONTRATO, DATA_ABERTURA, PRAZO) VALUES ($contrato, '$abertura', $duracaoTotal);";
+    $sql_OS = "INSERT INTO OS (ID_CONTRATO, DATA_ABERTURA, PRAZO, ELETRICISTAS) VALUES ($contrato, '$abertura', $duracaoTotal, '$eletricistas');";
     $res_OS = mysqli_query($connection, $sql_OS) or die(mysqli_error($connection));
     $os = mysqli_insert_id ($connection);
 
@@ -29,7 +29,7 @@
         $duracaoAtual = $duracao[$i];
         $atividadeAtual = $atividade[$i];
 
-        $sql_Atividades = "INSERT INTO ATIVIDADE (ID_OS, DESCRICAO, DURACAO) VALUES ('$os', '$atividadeAtual', '$duracaoAtual');";
+        $sql_Atividades = "INSERT INTO ATIVIDADE (ID_OS, DESCRICAO, DURACAO, SITUACAO) VALUES ('$os', '$atividadeAtual', '$duracaoAtual', '0');";
         $res_Atividades = mysqli_query($connection, $sql_Atividades) or die(mysqli_error($connection));
 
     }

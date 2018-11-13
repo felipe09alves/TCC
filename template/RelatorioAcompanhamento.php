@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
-<body>
+<body onload="ajax();">
     <div id="wrapper">
         <div class="sidenav">
             <div class="panel-group" id="accordion">
@@ -138,14 +138,24 @@
                     <div class="col-md-4">
                         <p>Perído:</p>
                         <div class="row">
-                            <div class="form-check">                                
-                                <input type="date" class="form-control">                               
+
+                            <div class="form-check">
+                                <input type="date" name="inicial" class="form-control" value=""> 
                             </div>
-                            <div class="form-check">                                
-                                <input type="date" class="form-control">                                
+
+                            <div class="form-check">
+                                <input type="date" name="final" class="form-control" value=""> 
                             </div>
+
                         </div>
                     </div>
+                    <!-- <div class="col-md-12" style="margin-top: 15px">
+                        <div class="text-center">
+                            <button id="botao-busca" href="" type="submit" role="button" class="btn btn-outline-primary">
+                                <i class="fas fa-search"></i>&nbsp;Pesquisar
+                            </button>
+                        </div>
+                    </div> -->
 
                     <div id="tabela" class="table tabela-exibe" align="center">
                         <table class="table-hover table-responsive">
@@ -159,8 +169,9 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="tabela-vendas">
+                            
+                                <!-- <tr>
                                     <td style="text-align: center">01</td>
                                     <td>José das Couves</td>
                                     <td>17/10/2018</td>
@@ -183,7 +194,7 @@
                                             <i class="fas fa-eye"></i>
                                         </button>                                    
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -211,86 +222,142 @@
 
 
 <script>
-
     $("#botao-busca").click(function() {
         ajax();
     });
-    $("#campo-busca").keyup(function(e) {
-        if(e.keyCode == 13) {
-            ajax();
-        }
+    $("input").change(function() {
+        ajax();
     });
-
-    // $("#botao-busca").click(function() {
-    // $("#botao-busca").on('click keyup', function() { 
-        function ajax() {
-        $("#tabela").empty();
-        busca = $("#campo-busca").val();
-
-        if (busca.length==0) {
-            $("#tabela").append("<h4>Todos os campos devem ser preenchidos.</h4>");
-            return;
-        }
-
-        $("#tabela").append("<h5>Aguarde...</h5><div class='loader'></div> ");
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-        } else {  // code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange=function() {
-            if (this.readyState==4 && this.status==200) {
-            $("#tabela").empty();
-            $("#tabela").append(this.responseText);
-            }
-        }
-
-        xmlhttp.open("GET","../resources/buscaCliente.php?campo-busca="+busca,true);
-        xmlhttp.send();
-    // });
-        }
-    
 </script>
 
 <script>
-    var ctx = document.getElementById("grafico-andamento").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Andamento", "Prazo", "Previsão"],
-            datasets: [{
-                label: 'dias',
-                data: [15, 18, 20],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            legend: {
-                display: true,
-                position: 'top',
-                onClick: null
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
+    function ajax() {    
+
+        var formData = {
+            'inicial'   : $('[name=inicial]').val(),
+            'final'     : $('[name=final]').val(),
+            'status'    : $('[name=status]:checked').val(),
+            'condicao'  : $('[name=condicao]:checked').val()
+        };        
+        $.ajax({
+            type        : 'POST',
+            url         : '../resources/getAcompanhamento.php',
+            data        : formData,
+            dataType    : 'json', 
+            encode      : true
+            // dataType    : 'text',
+        })           
+        .done(function(data) {
+
+            jsonLista = data;
+            montaTabela(jsonLista);
+            
+        });
+
+    }
+</script>
+
+<script>
+    function montaTabela(jsonLista) {
+
+        tabela = $("#tabela-vendas");
+        tabela.empty();
+        
+        jsonLista.forEach(function(item) {
+            tr = "<tr>";
+                tr += '<td style="text-align: center">' + item.id_os + '</td>';
+                tr += '<td>' + item.cliente + '</td>';
+                tr += '<td>' + formatDate(item.data_abertura); + '</td>';
+                tr += '<td>' + item.status + '</td>';
+                tr += '<td>' + item.condicao + '</td>';
+                if ( item.status == "Aberta" ) {
+                    tr += '<td><button value="' + item.i + '" type="button" class="btn visualizar"><i class="far fa-chart-bar"></i></button></td>';
+                } else {
+                    tr += '<td></td>'
+                }
+            tr += '</tr>'; 
+            tabela.append(tr);
+        });
+
+    }
+</script>
+
+<script>
+    function formatDate(data) { 
+
+        data = new Date(data);
+        var day = data.getDate();
+        if (day < 10) {
+            day = '0'+day;
         }
+        var month = data.getMonth() + 1;
+        var year = data.getFullYear();
+
+        return day + '/' + month + '/' + year;
+        // return year + '-' + month + '-' + day;
+    }
+</script>
+
+<script>
+    $("body").delegate(".visualizar", 'click', function() {
+        item = $(this).val();
+        montaGrafico(jsonLista[item]);
     });
+</script>
+
+<script>
+    function montaGrafico(item) {
+        
+        var ctx = document.getElementById("grafico-andamento").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Andamento", "Prazo", "Previsão"],
+                datasets: [{
+                    label: 'horas',
+                    data: graficoDatas(item),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    onClick: null
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+        
+    }
+
+    function graficoDatas(item) {
+        
+        var string = [];
+        
+        string[0] = item.duracao_real;
+        string[1] = item.prazo
+        string[2] = (parseInt(item.prazo) - item.duracao) + parseInt(item.duracao_real);
+        
+        return string;
+
+    }
 </script>
 
 </html>

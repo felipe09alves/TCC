@@ -106,14 +106,14 @@
 
                             <div class="col-md-4" style="text-align: left">
                                 <div class="form-check">
-                                    <input id="inicial" name="inicial" type="date" class="form-control" value="2018-11-08">
+                                    <input id="inicial" name="inicial" type="date" class="form-control" value="">
                                 </div>
                             </div>
 
                             <div class="col-md-1 text-center">a</div>
                             <div class="col-md-4" style="text-align: left">
                                 <div class="form-check">
-                                    <input id="final" name="final" type="date" class="form-control" value="2018-11-11">
+                                    <input id="final" name="final" type="date" class="form-control" value="">
                                 </div>
                             </div>
                             
@@ -194,6 +194,26 @@
                 </div>
             </div>
 
+            <div class="row">
+                
+                <div id="tabela" class="table tabela-exibe" align="center">
+                        <table id="tabela-vendas" class="table-hover table-responsive">
+                            <!-- <thead>
+                                <tr>
+                                    <th style="text-align: center">Data</th>
+                                    <th>Cliente</th>
+                                    <th>Região</th>
+                                    <th>Imóvel</th>
+                                </tr>
+                            </thead> -->
+                            <!-- <tbody id="tabela-vendas">
+                                                       
+                            </tbody> -->
+                        </table>
+                    </div>
+
+            </div>
+
         </div>
 
     </div>
@@ -209,13 +229,13 @@
 <script src="../static/js/jquery-ui.min.js"></script>
 
 
-<script>
+<script> //Lança Ajax no clique
     $("#botao-busca").click(function() {
         ajax();
     });
 </script>
 
-<script>
+<script> //Autocomplete
     $("#uf").change(function() {
 
         uf= $(this).val();        
@@ -246,7 +266,7 @@
     });
 </script>
 
-<script>
+<script> //Ajax
     function ajax() {    
 
         var formData = {
@@ -271,35 +291,40 @@
 
             $("#total-vendas").text(jsonVendas.total);
 
-            if (jsonVendas.maior !== null) {
+            // if (jsonVendas.total) {
 
-                $("#grafico-maior").show();
-                montaAtual(jsonVendas.maior);
-                $("#regiaoMaior").prev().show();
-                textoMaior = "Maior Crescimento: "+jsonVendas.maiorRegiao.cidade+" "+jsonVendas.maiorRegiao.estado;
-                $("#regiaoMaior").text(textoMaior);
+                if ( jsonVendas.maior && jsonVendas.maior !== null ) {
 
-            } else {
+                    $("#grafico-maior").show();
+                    montaAtual(jsonVendas.maior);
+                    $("#regiaoMaior").prev().show();
+                    textoMaior = "Maior Crescimento: "+jsonVendas.maiorRegiao.cidade+" "+jsonVendas.maiorRegiao.estado;
+                    $("#regiaoMaior").text(textoMaior);
 
-                $("#regiaoMaior").text('Dados nsuficientes para período selecionado.');
-                $("#grafico-maior").hide();
+                } else {
 
-            }
+                    $("#regiaoMaior").text('Dados isuficientes para período selecionado.');
+                    $("#grafico-maior").hide();
 
-            if (jsonVendas.menor !== null) {
+                }
 
-                $("#grafico-menor").show();
-                montaAnterior(jsonVendas.menor);
-                $("#regiaoMenor").prev().show();
-                textoMenor = "Maior Queda - "+jsonVendas.menorRegiao.cidade+" "+jsonVendas.menorRegiao.estado;
-                $("#regiaoMenor").text(textoMenor);
+                if ( jsonVendas.menor && jsonVendas.menor !== null ) {
 
-            } else {
+                    $("#grafico-menor").show();
+                    montaAnterior(jsonVendas.menor);
+                    $("#regiaoMenor").prev().show();
+                    textoMenor = "Maior Queda - "+jsonVendas.menorRegiao.cidade+" "+jsonVendas.menorRegiao.estado;
+                    $("#regiaoMenor").text(textoMenor);
 
-                $("#regiaoMenor").text('Dados insuficientes para período selecionado.');
-                $("#grafico-menor").hide();
+                } else {
 
-            }
+                    $("#regiaoMenor").text('Dados insuficientes para período selecionado.');
+                    $("#grafico-menor").hide();
+
+                }
+            // }
+
+            montaTabela(jsonVendas.listaTodas);
             
         });
 
@@ -309,6 +334,43 @@
 </script>
 
 <script>
+    function montaTabela(jsonLista) {
+
+        tabela = $("#tabela-vendas");
+        tabela.empty();
+
+        if (jsonLista[0]) {            
+        
+            thead = '<thead><tr><th style="text-align: center">Data</th><th>Cliente</th><th>Região</th><th>Imóvel</th></tr></thead>';
+            tabela.append(thead);
+
+            tbody = '<tbody>';
+            tabela.append(tbody);
+
+            jsonLista.forEach(function(item) {
+                tr = "<tr>";                
+                    tr += '<td>' + formatDate(item.data); + '</td>';
+                    tr += '<td>' + item.cliente + '</td>';
+                    tr += '<td>' + item.cidade + ' - ' + item.uf + '</td>';
+                    tr += '<td>' + item.imovel + '</td>';
+                    if ( item.status == "Aberta" ) {
+                        tr += '<td><button value="' + item.i + '" type="button" class="btn visualizar"><i class="far fa-chart-bar"></i></button></td>';
+                    } else {
+                        tr += '<td></td>'
+                    }
+                tr += '</tr>'; 
+                tabela.append(tr);
+            });
+
+            tbody = '<tbody>';
+            tabela.append(tbody);
+
+        }
+
+    }
+</script>
+
+<script> //Monta Gráfico Crescimento
     function montaAtual(maior) {
         
         var ctx = document.getElementById("grafico-maior").getContext('2d');
@@ -347,7 +409,7 @@
     }
 </script>
 
-<script>
+<script> //Monta Gráfico Queda
     function montaAnterior(menor) {
         var ctx = document.getElementById("grafico-menor").getContext('2d');
         var myChart = new Chart(ctx, {
@@ -385,7 +447,7 @@
     }
 </script>
 
-<script>
+<script> //Dados dos Gráficos
     function graficoVendas(vendas) {
 
         var string = [];
