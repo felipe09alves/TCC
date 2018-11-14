@@ -59,8 +59,8 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
-                                <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
+                                <a href="NovaOS.php" class="list-group-item">Abrir OS</a>
+                                <!-- <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a> -->
                                 <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
@@ -102,10 +102,10 @@
                         <button onclick="window.location.href='NovoOrcamento.php?id=<?php echo $_GET['id']; ?>'" id="novo-orcamento" role="button" class="btn btn-outline-primary">
                             <i class="fas fa-plus"></i>&nbsp;Novo Orçamento
                         </button>
-                        <button type="button" class="btn visualizar-btn" onclick="window.location.href='AlteraCliente.php?id=<?php echo $_GET['id']; ?>'">
+                        <button type="button" class="btn visualizar-btn" onclick="window.location.href='AlteraCliente.php?id=<?php #echo $_GET['id']; ?>'">
                             <span class="fas fa-pen"></span>
                         </button>                        
-                        <button type="button" class="btn" onclick="window.location.href='../resources/deletaCliente.php?id=<?php echo $_GET['id']; ?>'">
+                        <button type="button" id="deletar" class="btn">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -264,8 +264,8 @@
 <script>
 
     var msg = "<?php
-        if ( isset($_SESSION['confirma']) ) {
-             echo $_SESSION['confirma'];
+        if ( isset($_SESSION['confirma_cliente']) ) {
+             echo $_SESSION['confirma_cliente'];
         }   
     ?>";
 
@@ -273,7 +273,7 @@
         alert(msg);
     }
 
-    <?php unset($_SESSION['confirma']); ?>
+    <?php unset($_SESSION['confirma_cliente']); ?>
 
 </script>
 
@@ -282,6 +282,15 @@
         naoEncontrado = document.getElementById("nao-cadastrado");
         if(naoEncontrado) {
             $("#novo-orcamento").prop('disabled', true);
+        }
+    });
+</script>
+
+<script>
+    $("#deletar").click(function() {
+        confirma = confirm("Press a button!");
+        if (confirma ===true) {
+            window.location.href='../resources/deletaCliente.php?id=<?php echo $_GET['id']; ?>';
         }
     });
 </script>

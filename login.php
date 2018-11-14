@@ -11,6 +11,7 @@
 </head>
 
 <body>
+	<!-- <form id="wrapper" method="post" onsubmit="return confirma();"> -->
 	<div id="wrapper">
 		
 
@@ -19,16 +20,16 @@
 		</div>
 		<div class="login-box">
 			<div class="form-group">
-				<label for="email">Login:</label><span class="text-danger"></span>
-				<input type="text" class="form-control campo" name="email" placeholder="Login">
+				<label for="">Login:</label><span class="text-danger"></span>
+				<input id="user" type="text" class="form-control campo" name="" placeholder="Login">
 			</div>
 			<div class="form-group">
-				<label for="fone">Senha:</label><span class="text-danger"></span>
-				<input type="password" class="form-control campo" name="telefone" placeholder="Senha">
+				<label for="">Senha:</label><span class="text-danger"></span>
+				<input id="senha" type="password" class="form-control campo" name="" placeholder="Senha">
 			</div>
 			<div class="form-group"></div>
 			<div>
-				<button class="form-control btn btn-outline-primary">Entrar</button>
+				<button id="entrar" class="form-control btn btn-outline-primary">Entrar</button>
 			</div>
 		</div>
 
@@ -42,5 +43,19 @@
 <script src="static/js/jquery.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/fontawesome/js/all.min.js"></script>
+
+<script>
+	$("#entrar").click(function() {
+		user = $("#user").val();
+		senha = $("#senha").val();
+
+		if( (user == "sollar" && senha == "admin") || (user == "admin" && senha == "admin") ) {
+			window.location.href="./index.php"
+		} else {
+			alert("Usuário ou senha incorreta!");
+		}
+
+	});
+</script>
 
 </html>

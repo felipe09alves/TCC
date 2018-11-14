@@ -5,7 +5,7 @@
     if (isset($_POST) & !empty($_POST)) {
         // $inicial = ($_POST['inicial']);
         // $final = ($_POST['final']);
-        $skip = 0;
+        // $skip = 0;
         if ($_POST['inicial']) {
             // echo "INICIAL";
             $inicial = ($_POST['inicial']);
@@ -31,7 +31,7 @@
     }
 
     
-    if (!isset($skip) && $skip != 1) {
+    if (!isset($skip)) {
         // echo "FPOI";
         // $inicial = date("Y-m-d", strtotime($inicial));
         // $final = date("Y-m-d", strtotime($final));

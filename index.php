@@ -43,7 +43,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a href="template/Cliente.html">
+							<a href="template/Cliente.php">
 								<i class="fas fa-chevron-right"></i> &nbsp;Orçamento</a>
 						</h4>
 					</div>
@@ -58,8 +58,7 @@
 					<div id="collapse2" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="list-group">
-								<a href="template/AbrirOS.php" class="list-group-item">Abrir OS</a>
-								<a href="template/MonitorarOS.php" class="list-group-item">Monitorar OS</a>
+								<a href="template/NovaOS.php" class="list-group-item">Abrir OS</a>
 								<a href="template/BuscarOS.php" class="list-group-item">Pesquisar</a>
 							</div>
 						</div>

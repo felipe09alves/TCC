@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../static/js/jquery-ui.theme.min.css">
 </head>
 
-<body>
+<body onload="ajax();">
     <div id="wrapper">
         <div class="sidenav">
             <div class="panel-group" id="accordion">
@@ -62,8 +62,8 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
-                                <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
+                                <a href="NovaOS.php" class="list-group-item">Abrir OS</a>
+                                <!-- <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a> -->
                                 <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
@@ -162,11 +162,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6" style="text-align: center">
+                            <!-- <div class="col-md-6" style="text-align: center">
                                 <button id="botao-busca" href="" type="submit" role="button" class="btn btn-outline-primary">
                                     <i class="fas fa-search"></i>&nbsp;Pesquisar
                                 </button>
-                            </div>
+                            </div> -->
                             
                         </div>
 
@@ -233,6 +233,20 @@
     $("#botao-busca").click(function() {
         ajax();
     });
+    $("input").change(function() {
+        ajax();
+    });
+    $("select").change(function() {
+        ajax();
+    });
+    $("#campo-busca").keyup(function(e) {
+        if(e.keyCode == 13) {
+            ajax();
+        }
+    });
+    // $("input").on("focusout", function() {
+    //     ajax();
+    // });
 </script>
 
 <script> //Autocomplete

@@ -1,3 +1,43 @@
+<?php 
+    require_once('../resources/session.php');
+    require('../resources/connect.php');
+
+    function lista($connection) {
+
+        $case = "CASE WHEN (OS.DATA_CONCLUSAO) IS NOT NULL THEN 'Concluida' ELSE 'Aberta' END";
+        $sql = "SELECT OS.ID AS id_os, CONTRATO.ID AS id_contrato, CLIENTE.NOME AS nome, CLIENTE.CPF AS cpf, DATA_ABERTURA AS data_abertura,
+                CASE WHEN (OS.DATA_CONCLUSAO) IS NOT NULL THEN 'Concluida' ELSE 'Aberta' END
+                FROM OS 
+                JOIN CONTRATO ON OS.ID_CONTRATO = CONTRATO.ID 
+                JOIN ORCAMENTO ON CONTRATO.ID_ORCAMENTO = ORCAMENTO.ID 
+                JOIN CLIENTE ON ORCAMENTO.ID_CLIENTE = CLIENTE.ID
+                ORDER BY DATA_ABERTURA DESC;";
+        $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+    
+        while ($r = mysqli_fetch_assoc($res)) {
+            echo '<tr>';
+            echo     '<td class="text-center">'.$r['id_os'].'</td>';
+            echo     '<td>'.date("d/M/Y", strtotime($r['data_abertura'])).'</td>';
+            echo     '<td>'.$r[$case].'</td>';
+            echo     '<td>'.$r['nome'].'</td>';
+            echo     '<td>'.$r['cpf'].'</td>';
+            echo     '<td><button onclick="redirect('.$r['id_contrato'].', '.$r['id_os'].')" role="button" class="btn visualizar-btn"><i class="fas fa-eye"></i></button></td>';
+            echo '</tr>';
+        }
+
+    }
+
+
+    function formataCPF($cpf) {
+        $novo = substr_replace($cpf, '.', 3, 0);
+        $novo = substr_replace($novo, '.', 7, 0);
+        $novo = substr_replace($novo, '-', 11, 0);
+        return $novo;
+    }
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,8 +98,8 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
-                                <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
+                                <a href="NovaOS.php" class="list-group-item">Abrir OS</a>
+                                <!-- <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a> -->
                                 <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
@@ -103,46 +143,15 @@
                     <thead>
                         <tr>
                             <th>Número</th>
-                            <th>Cliente</th>
+                            <th>Abertura</th>
                             <th>Status</th>
-                            <th>Telefone</th>
+                            <th>Cliente</th>
+                            <th>CPF</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>0001</td>
-                            <td>John</td>
-                            <td>Aberta</td>
-                            <td>(99) 9999-9999</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>0002</td>
-                            <td>Mary</td>
-                            <td>Fechada</td>
-                            <td>(99) 9999-9999</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>0003</td>
-                            <td>July</td>
-                            <td>Fechada</td>
-                            <td>(99) 9999-9999</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php lista($connection); ?>                        
                     </tbody>
                 </table>
 
@@ -159,5 +168,11 @@
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
+
+<script>
+function redirect(id_contrato, id_os) {
+    location.href='./MonitorarOS.php?id_contrato='+ id_contrato +'&id_os='+ id_os;
+}
+</script>
 
 </html>

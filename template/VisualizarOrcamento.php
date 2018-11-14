@@ -179,8 +179,8 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
-                                <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
+                                <a href="NovaOS.php" class="list-group-item">Abrir OS</a>
+                                <!-- <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a> -->
                                 <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
@@ -213,14 +213,8 @@
             
                 <div class="col-lg-4">
                     <div class="card card-body card-cliente">                        
-                        <h4>nome</h4>
-                        <span>12315654987</span>
-                        <span>email@email.com</span>
-                        <span>6181818181</span>
-                        <span>Minas Gerais</span>
-                        <span>Água Doce do Norte</span>
-                        <span>qwe</span>
-                        <span>rural</span>
+                        <?php require_once('../resources/exibeClientes.php');
+                        detalha(); ?>
                     </div>
                     <div style="text-align: left; padding-top: 15px">
 

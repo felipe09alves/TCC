@@ -59,8 +59,8 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
-                                <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
+                                <a href="NovaOS.php" class="list-group-item">Abrir OS</a>
+                                <!-- <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a> -->
                                 <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>

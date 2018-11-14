@@ -44,11 +44,11 @@
     }
 
     if ($res) {                
-        $_SESSION['confirma'] = "Operação realizada com Sucesso!";
+        $_SESSION['confirma_irradiacao'] = "Operação realizada com Sucesso!";
         header( "Location: ../template/Irradiacao.php");
         exit();
     } else {
-        $_SESSION['confirma'] = "Erro! Não foi possível realizar a operação.";
+        $_SESSION['confirma_irradiacao'] = "Erro! Não foi possível realizar a operação.";
     }
 
 

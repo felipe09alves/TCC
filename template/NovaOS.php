@@ -1,3 +1,45 @@
+<?php 
+    require_once('../resources/session.php');
+    require('../resources/connect.php');
+
+    function lista($connection) {
+
+        $sql = "SELECT CONTRATO.ID AS id_contrato, CLIENTE.NOME AS nome, CLIENTE.CPF AS cpf, DATA_CRIACAO AS criacao
+                FROM CONTRATO
+                JOIN ORCAMENTO ON CONTRATO.ID_ORCAMENTO = ORCAMENTO.ID 
+                JOIN CLIENTE ON ORCAMENTO.ID_CLIENTE = CLIENTE.ID
+                ORDER BY DATA_CRIACAO DESC;";
+        $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+    
+        while ($r = mysqli_fetch_assoc($res)) {
+            $nome = ($r['id_contrato']);   
+            $nome = ($r['nome']);        
+            $cpf = formataCPF($r['cpf']);
+
+            echo '<tr>';
+            echo     '<td class="text-center">'.$r['id_contrato'].'</td>';
+            echo     '<td>'.date("d/M/Y", strtotime($r['criacao'])).'</td>';
+            echo     '<td>'.$r['nome'].'</td>';
+            echo     '<td>'.$r['cpf'].'</td>';
+            echo     '<td><button onclick="redirect('.$r['id_contrato'].')" role="button" class="btn visualizar-btn"><i class="fas fa-eye"></i></button></td>';
+            echo '</tr>';
+
+
+        }
+
+    }
+
+
+    function formataCPF($cpf) {
+        $novo = substr_replace($cpf, '.', 3, 0);
+        $novo = substr_replace($novo, '.', 7, 0);
+        $novo = substr_replace($novo, '-', 11, 0);
+        return $novo;
+    }
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,16 +127,12 @@
         </div>
 
         <div class="main">
-            <h1 class="titulo">Consulta de Funcionário</h1>
+            <h1 class="titulo">Consulta Contrato</h1>
 
             <div class="row first-line">
-                <div class="col-md-3" style="text-align: center">
-                    <a href="CadastraFuncionario.php" role="button" class="btn btn-outline-primary">
-                        <i class="fas fa-plus"></i>&nbsp;Funcionário
-                    </a>
-                </div>
-                <div class="col-md-6" style="display: flex">
-                    <input type="text" class="form-control" style="align-self: flex-end">
+                <div class="col-md-2" style="text-align: center"></div>
+                <div class="col-md-7" style="display: flex">
+                    <input type="text" class="form-control" style="align-self: flex-end" placeholder="Cliente">
                 </div>
                 <div class="col-md-3">
                     <button type="button" role="button" class="btn btn-outline-secondary">
@@ -106,52 +144,15 @@
                 <table class="table-hover table-responsive">
                     <thead>
                         <tr>
+                            <th>Número</th>
+                            <th>Data</th>
+                            <th>Cliente</th>
                             <th>CPF</th>
-                            <th>Nome</th>
-                            <th>Cargo</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>000.000.000-00</td>
-                            <td>John</td>
-                            <td>Eletricista</td>
-                            <td>
-                                <button type="button" class="btn visualizar-btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>000.000.000-00</td>
-                            <td>Mary</td>
-                            <td>Contador</td>
-                            <td>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>000.000.000-00</td>
-                            <td>July</td>
-                            <td>Funcionário Administrativo</td>
-                            <td>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php lista($connection); ?>                        
                     </tbody>
                 </table>
 
@@ -168,5 +169,11 @@
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/fontawesome/js/all.min.js"></script>
+
+<script>
+function redirect(id_contrato) {
+    location.href='./Contrato.php?id_contrato=' + id_contrato + '&disabled=true';
+}
+</script>
 
 </html>

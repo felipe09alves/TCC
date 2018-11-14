@@ -188,7 +188,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a hre f="../index.php">
+                            <a href="../index.php">
                                 <i class="fas fa-home"></i> &nbsp;Home</a>
                         </h4>
                     </div>
@@ -229,8 +229,8 @@
                     <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="AbrirOS.php" class="list-group-item">Abrir OS</a>
-                                <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a>
+                                <a href="NovaOS.php" class="list-group-item">Abrir OS</a>
+                                <!-- <a href="MonitorarOS.php" class="list-group-item">Monitorar OS</a> -->
                                 <a href="BuscarOS.php" class="list-group-item">Pesquisar</a>
                             </div>
                         </div>
@@ -299,7 +299,11 @@
                     <button href="" type="button" role="button" class="btn btn-outline-dark btn-sm">
                         <i class="fas fa-print"></i>
                     </button>
-                    <button id="salvar" type="button" role="button" class="btn btn-outline-dark btn-sm">
+                    <button id="salvar" type="button" role="button" class="btn btn-outline-dark btn-sm" 
+
+                    <?php  if (isset($_GET['disabled']) & !empty($_GET['disabled']) & !empty($_GET['disabled']) === true) {
+                        echo 'disabled' ;
+                    }?> >
                         <i class="fas fa-save"></i>&nbsp;Salvar
                     </button>
                 </div>

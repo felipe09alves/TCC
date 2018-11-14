@@ -49,20 +49,25 @@ function detalha() {
 
 <?php 
     $id_cidade =  $r['id_cidade'];
-    echo $id_cidade;
+    // echo $id_cidade;
     // $_POST($id_cidade);
 } 
 
-function checkIrradiacao($id_cidade) {
+function checkIrradiacao($id) {
 
     require('connect.php');
-    $sql_irradiacao = "SELECT irradiacao.id_cidade FROM irradiacao JOIN cidade ON irradiacao.id_cidade = cidade.id JOIN cliente ON cidade.id = cliente.id_cidade WHERE cliente.id = '$id_cidade';";
+    $sql_irradiacao = "SELECT irradiacao.id_cidade, cidade.id_estado as id_estado FROM irradiacao JOIN cidade ON irradiacao.id_cidade = cidade.id JOIN cliente ON cidade.id = cliente.id_cidade WHERE cliente.id = '$id';";
     $res_irradiacao = mysqli_query($connection, $sql_irradiacao) or die(mysqli_error($connection));
 
+    
     if (mysqli_num_rows($res_irradiacao)!=0){
         echo  "<p id='cadastrado'>Indice de Irradiação Cadastrado <i class='fas fa-check text-success'></i></p>";
     }else {
-        echo  "<p id='nao-cadastrado'>Indice de Irradiação Não Cadastrado <i class='fas fa-times text-danger'></i><br><a href=''>Clique para cadastrar</a></p>";
+        $sql = "SELECT cidade.id as id_cidade, cidade.id_estado as id_estado FROM cidade JOIN cliente ON cidade.id = cliente.id_cidade WHERE cliente.id = '$id';";
+        $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+
+        $r = mysqli_fetch_assoc($res);
+        echo  "<p id='nao-cadastrado'>Indice de Irradiação Não Cadastrado <i class='fas fa-times text-danger'></i><br><a href='./CadastrarIrradiacao.php?cidade=".$r['id_cidade']."&uf=".$r['id_estado']."'>Clique para cadastrar</a></p>";
     }   
 
 }

@@ -23,12 +23,12 @@
         $res = mysqli_query($connection, $sql) or die(mysqli_error($connection));
         $r = mysqli_fetch_assoc($res);
         
-        $_SESSION['confirma'] = "Operação realizada com Sucesso!";
+        $_SESSION['confirma_cliente'] = "Operação realizada com Sucesso!";
         header( "Location: ../template/DetalhaCliente.php?id=".$r['id'] );
         
         exit();
     } else {
-        $_SESSION['confirma'] = "Erro! Não foi possível realizar a operação.";
+        $_SESSION['confirma_cliente'] = "Erro! Não foi possível realizar a operação.";
     }
 
 
